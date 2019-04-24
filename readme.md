@@ -38,4 +38,5 @@ $ composer dumpautoload
 - Change the database configuration in `.env`.
 - Execute ```php artisan migrate:refresh```.
 - Execute ```composer dump-autoload```.
+- Execute ```php artisan migrate:refresh --seed```.
 - Execute ```php artisan db:seed --class=AddDummyEvent```.
