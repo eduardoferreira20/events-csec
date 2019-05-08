@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePalestrantesTable extends Migration
+class CreatePalestrasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,21 @@ class CreatePalestrantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('palestrantes', function (Blueprint $table) {
+        Schema::create('palestras', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
 
-            $table->string('nome');
-            $table->string('instituicao');
-            $table->string('url')->nullable();
-            $table->text('apresentacao')->nullable();
-            $table->string('cargo')->nullable();
-            $table->string('foto_perfil')->nullable();
+            $table->string('title');
+            $table->text('apresentation');
+            $table->string('palestrante1');
+            $table->string('palestrante2')->nullable();
+            $table->string('palestrante3')->nullable();
+            $table->string('palestrante4')->nullable();
+            $table->datetime('start_date')->nullable();
+            $table->datetime('end_date')->nullable();
+
             $table->timestamps();
         });
     }
@@ -36,6 +39,6 @@ class CreatePalestrantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('palestrantes');
+        Schema::dropIfExists('palestras');
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\InscricaoController; 
 use App\Event;
 use App\Palestrante;
+use App\Palestra;
+use App\Oficinas;
 use DB;
 Use DateTime;
 use Validator;
@@ -28,7 +30,7 @@ class EventController extends Controller
 					new DateTime($value->end_date),
 					null,
 					[
-					'url' => route('events.show', ['id' => $value->id]),
+						'url' => route('events.show', ['id' => $value->id]),
 					]
 				);
 			}
@@ -36,8 +38,8 @@ class EventController extends Controller
 
 		$calendar = Calendar::addEvents($events)->setOptions(
 			[
-			'timeFormat' => 'H:mm',
-			'displayEventTime' => false,
+				'timeFormat' => 'H:mm',
+				'displayEventTime' => false,
 			]
 		);
 
@@ -54,6 +56,10 @@ class EventController extends Controller
 
 		$start = date('Y-m-d H:i:s', strtotime("$sd $st"));
 		$end = date('Y-m-d H:i:s', strtotime("$ed $et"));
+
+		$perfil = $request->file('foto_perfil');
+		$extensao = $request->perfil->getClientOriginalExtension();
+		$path = url('storage/'.$perfil->storeAs('foto_perfil', $request['user_id'].'.' .$extensao));
 
 		$event = new Event;
 		$event->title = $request->input('event_name');
@@ -73,10 +79,10 @@ class EventController extends Controller
 
 	public function events($id){
 		$event = DB::table('events')
-			->where('id', $id)->first();
+		->where('id', $id)->first();
 
 		$user = DB::table('users')
-			->where('id', $event->user_id)->first();
+		->where('id', $event->user_id)->first();
 
 		$event = array(
 			'id'	=> $event->id,
@@ -96,10 +102,14 @@ class EventController extends Controller
 		);
 
 		$nome_palestrantes = DB::table('palestrantes')
-								->where('event_id', $id)
-								->get();
+		->where('event_id', $id)
+		->get();
 
-		return view('showevent')->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes);
+		$palestras = DB::table('palestras')->where('event_id',$id)->get();	
+
+		$oficinas = DB::table('oficinas')->where('event_id',$id)->get();				
+
+		return view('showevent')->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes)->with('palestras', $palestras)->with('oficinas',$oficinas);
 
 	}
 
@@ -107,123 +117,300 @@ class EventController extends Controller
 
 
 		$check = null;
-			if($request['info'] == 'general'){
-				$check = DB::table('events')
-				->where('id', $id)
-				->first();
+		if($request['info'] == 'general'){
+			$check = DB::table('events')
+			->where('id', $id)
+			->first();
 
-				$check = array(
-					'title' => $check->title,
-					'local' => $check->local,
-					'cidade' => $check->cidade,
-					'valor' => $check->valor, 
-					'start_date' => date('Y-m-d', strtotime($check->start_date)),
-					'end_date' => date('Y-m-d', strtotime($check->start_date)),
-					'all_day' => $check->all_day,
-					'start_time' => date('H:i:s', strtotime($check->start_date)),
-					'end_time' => date('H:i:s', strtotime($check->end_date)),
-					);
+			$check = array(
+				'title' => $check->title,
+				'local' => $check->local,
+				'cidade' => $check->cidade,
+				'valor' => $check->valor, 
+				'start_date' => date('Y-m-d', strtotime($check->start_date)),
+				'end_date' => date('Y-m-d', strtotime($check->start_date)),
+				'all_day' => $check->all_day,
+				'start_time' => date('H:i:s', strtotime($check->start_date)),
+				'end_time' => date('H:i:s', strtotime($check->end_date)),
+			);
 
-				return view('editevent')
-					->with('field', $request['info'])
-					->with('old', $check)
-					->with('id', $id);	
-			}elseif($request['info'] == 'palestrantes'){
-				$check = DB::table('palestrantes')
-					->where('event_id', $id)
-					->where('id', $request['old'])
-					->first();
+			return view('editevent')
+			->with('field', $request['info'])
+			->with('old', $check)
+			->with('id', $id);	
 
-				return view('editevent')
-					->with('field', $request['info'])
-					->with('old', $check)
-					->with('id', $id);	
-			}elseif($request['info'] == 'editar_apresentacao'){
-				DB::table('events')
-					->where('id', $id)
-					->update(['apresentation' => $request['input']]);
+		}elseif($request['info'] == 'palestrantes'){
+			$check = DB::table('palestrantes')
+			->where('event_id', $id)
+			->where('id', $request['old'])
+			->first();
 
-				return Redirect::to(route('events.show', ['id' => $id]));
-			}elseif($request['info'] == 'editar_informacoes'){
-				$sd = $request['start_date'];
-				$st = $request['start_time'];
-				$ed = $request['end_date'];
-				$et = $request['end_time'];
+			return view('editevent')
+			->with('field', $request['info'])
+			->with('old', $check)
+			->with('id', $id);	
 
-				$start = date('Y-m-d H:i:s', strtotime("$sd $st"));
-				$end = date('Y-m-d H:i:s', strtotime("$ed $et"));
+		}elseif($request['info'] == 'palestras'){
+			$check = DB::table('palestras')
+			->where('event_id', $id)
+			->where('id', $request['old'])
+			->first();
 
-				DB::table('events')
-					->where('id', $id)
-					->update(['title' => $request['title']]);
+			return view('editevent')
+			->with('field', $request['info'])
+			->with('old', $check)
+			->with('id', $id);	
 
-				DB::table('events')
-					->where('id', $id)
-					->update(['local' => $request['local']]);
-				
-				DB::table('events')
-					->where('id', $id)
-					->update(['cidade' => $request['cidade']]);
+		}elseif($request['info'] == 'minicursos'){
+			$check = DB::table('oficinas')
+			->where('event_id', $id)
+			->where('id', $request['old'])
+			->first();
 
-				DB::table('events')
-					->where('id', $id)
-					->update(['valor' => $request['valor']]);	
+			return view('editevent')
+			->with('field', $request['info'])
+			->with('old', $check)
+			->with('id', $id);	
 
-				DB::table('events')
-					->where('id', $id)
-					->update(['all_day' => $request->has('all_day')]);
+		}elseif($request['info'] == 'editar_apresentacao'){
+			DB::table('events')
+			->where('id', $id)
+			->update(['apresentation' => $request['input']]);
 
-				DB::table('events')
-					->where('id', $id)
-					->update(['start_date' => $start]);
-				
-				DB::table('events')
-					->where('id', $id)
-					->update(['end_date' => $end]);
+			return Redirect::to(route('events.show', ['id' => $id]));
+		}elseif($request['info'] == 'editar_informacoes'){
+			$sd = $request['start_date'];
+			$st = $request['start_time'];
+			$ed = $request['end_date'];
+			$et = $request['end_time'];
 
-				return Redirect::to(route('events.show', ['id' => $id]));
-			}elseif($request['info'] == 'editar_palestrante'){
-				DB::table('palestrantes')
-				->where('event_id', $id)
-				->where('id', $request['id'])
-				->update(['nome' => $request['nome']]);
-	
-				DB::table('palestrantes')
-				->where('event_id', $id)
-				->where('id', $request['id'])
-				->update(['instituicao' => $request['instituicao']]);
-	
-				DB::table('palestrantes')
-				->where('event_id', $id)
-				->where('id', $request['id'])
-				->update(['url' => $request['url']]);
-	
-				DB::table('palestrantes')
-				->where('event_id', $id)
-				->where('id', $request['id'])
-				->update(['apresentacao' => $request['input']]);
-	
-				return Redirect::to(route('events.show', ['id' => $id]));
-			}elseif($request['info'] == 'adicionar_palestrante'){
-				Palestrante::create([
-					'event_id' => $id,
-					'nome' => $request['nome'],
-					'instituicao' => $request['instituicao'],
-					'url' => $request['url'],
-					'apresentacao' => $request['input'],
-				]);
-		
-				return Redirect::to(route('events.show', ['id' => $id]));
-			}else{
-				$check = DB::table('events')
-				->where('id', $id)
-				->first();
+			$start = date('Y-m-d H:i:s', strtotime("$sd $st"));
+			$end = date('Y-m-d H:i:s', strtotime("$ed $et"));
 
-				return view('editevent')
-					->with('field', $request['info'])
-					->with('old', $check)
-					->with('id', $id);
-			}
+			DB::table('events')
+			->where('id', $id)
+			->update(['title' => $request['title']]);
+
+			DB::table('events')
+			->where('id', $id)
+			->update(['local' => $request['local']]);
+
+			DB::table('events')
+			->where('id', $id)
+			->update(['cidade' => $request['cidade']]);
+
+			DB::table('events')
+			->where('id', $id)
+			->update(['valor' => $request['valor']]);	
+
+			DB::table('events')
+			->where('id', $id)
+			->update(['all_day' => $request->has('all_day')]);
+
+			DB::table('events')
+			->where('id', $id)
+			->update(['start_date' => $start]);
+
+			DB::table('events')
+			->where('id', $id)
+			->update(['end_date' => $end]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));
+		}elseif($request['info'] == 'editar_palestrante'){
+
+
+			DB::table('palestrantes')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['nome' => $request['nome']]);
+
+			DB::table('palestrantes')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['instituicao' => $request['instituicao']]);
+
+			DB::table('palestrantes')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['cargo' => $request['cargo']]);
+
+			DB::table('palestrantes')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['foto_perfil' => $request['foto_perfil']]);
+
+			DB::table('palestrantes')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['url' => $request['url']]);
+
+			DB::table('palestrantes')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['apresentacao' => $request['input']]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));
+
+		}elseif($request['info'] == 'editar_palestras'){
+			$sd = $request['start_date'];
+			$st = $request['start_time'];
+			$ed = $request['end_date'];
+			$et = $request['end_time'];
+
+			$start = date('Y-m-d H:i:s', strtotime("$sd $st"));
+			$end = date('Y-m-d H:i:s', strtotime("$ed $et"));
+
+			DB::table('palestras')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['title' => $request['title']]);
+
+			DB::table('palestras')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['palestrante_id' => $request['palestrante_id']]);
+
+
+			DB::table('palestras')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['apresentation' => $request['input']]);
+
+			DB::table('palestras')
+			->where('event_id',$id)
+			->where('id',$request['id'])
+			->update(['start_date' => $start]);
+
+			DB::table('palestras')
+			->where('event_id',$id)
+			->where('id',$request['id'])
+			->update(['end_date' => $end]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));
+
+		}elseif($request['info'] == 'editar_cursos'){
+			$sd = $request['start_date'];
+			$st = $request['start_time'];
+			$et = $request['end_time'];
+
+			$start = date('Y-m-d H:i:s', strtotime("$sd $st"));
+			$end = date('H:i', strtotime("$et"));
+
+			DB::table('oficinas')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['title' => $request['title']]);
+
+			DB::table('oficinas')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['apresentation' => $request['input']]);
+
+			DB::table('oficinas')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['palestrante1' => $request['palestrante1']]);
+
+			DB::table('oficinas')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['palestrante2' => $request['palestrante2']]);
+
+			DB::table('oficinas')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['palestrante3' => $request['palestrante3']]);
+
+			DB::table('oficinas')
+			->where('event_id', $id)
+			->where('id', $request['id'])
+			->update(['palestrante4' => $request['palestrante4']]);
+
+			DB::table('oficinas')
+			->where('event_id',$id)
+			->where('id',$request['id'])
+			->update(['start_date' => $start ]);
+
+			DB::table('oficinas')
+			->where('event_id',$id)
+			->where('id',$request['id'])
+			->update(['end_date' => $end]);
+
+			DB::table('oficinas')
+			->where('event_id',$id)
+			->where('id',$request['id'])
+			->update(['valor' => $request['valor']]);
+
+			DB::table('oficinas')
+			->where('event_id',$id)
+			->where('id',$request['id'])
+			->update(['hora_comple' => $request['hora_comple']]);
+
+			DB::table('oficinas')
+			->where('event_id',$id)
+			->where('id',$request['id'])
+			->update(['local' => $request['local']]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));		
+		}elseif($request['info'] == 'adicionar_palestrante'){
+
+			$perfil = $request->file('foto_perfil');
+			$extensao = $request->perfil->getClientOriginalExtension();
+			$path = url('storage/'.$perfil->storeAs('foto_perfil', $request['user_id'].'.' .$extensao));
+
+			Palestrante::create([
+				'event_id' => $id,
+				'nome' => $request['nome'],
+				'instituicao' => $request['instituicao'],
+				'cargo' => $request['cargo'],
+				'foto_perfil' => $path,
+				'url' => $request['url'],
+				'apresentacao' => $request['input'],
+			]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));
+
+		}elseif($request['info'] == 'adicionar_minicurso'){
+
+			Oficinas::create([
+				'event_id' => $id,
+				'title' => $request['title'],
+				'apresentation' => $request['input'],
+				'palestrante1' => $request['palestrante1'],
+				'palestrante2' => $request['palestrante2'],
+				'palestrante3' => $request['palestrante3'],
+				'palestrante4' => $request['palestrante4'],
+				'start_date' => $request['start_date'],
+				'end_date' => $request['end_date'],
+				'valor' => $request['valor'],
+				'local' => $request['local'],
+				'hora_comple' => $request['hora_comple'],
+			]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));
+			
+		}elseif($request['info'] == 'adicionar_palestras'){
+			Palestra::create([
+				'event_id' => $id,
+				'title' => $request['title'],
+				'palestrante_id' => $request['palestrante_id'],
+				'apresentation' => $request['input'],
+				'start_date' => $request['start_date'],
+				'end_date' => $request['end_date'],
+			]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));
+
+		}else{
+			$check = DB::table('events')
+			->where('id', $id)
+			->first();
+
+			return view('editevent')
+			->with('field', $request['info'])
+			->with('old', $check)
+			->with('id', $id);
+		}
 		
 		return abort(404);
 	}
@@ -245,20 +432,20 @@ class EventController extends Controller
 	public function inscricoes($id, Request $request){
 		if($request['info'] == 'mostrar_edicao' || $request['info'] == 'mostrar_inscricao'){
 			$evento = DB::table('events')
-				->where('id', $id)
-				->first();
+			->where('id', $id)
+			->first();
 
 			return view('inscricoes')
-				->with('evento', $evento)
-				->with('info', $request['info']);
+			->with('evento', $evento)
+			->with('info', $request['info']);
 		}elseif($request['info'] == 'add'){
 			DB::table('events')
-				->where('id', $id)
-				->update(['inicio_inscricoes' => $request['inicio_inscricoes']]);
+			->where('id', $id)
+			->update(['inicio_inscricoes' => $request['inicio_inscricoes']]);
 
 			DB::table('events')
-				->where('id', $id)
-				->update(['fim_inscricoes' => $request['fim_inscricoes']]);
+			->where('id', $id)
+			->update(['fim_inscricoes' => $request['fim_inscricoes']]);
 			
 			return Redirect::to(route('events.show', ['id' => $id]));
 		}elseif($request['info'] == 'inscrever'){
@@ -269,5 +456,6 @@ class EventController extends Controller
 	public function index(){
 		$event= Event::all();
 		return view('index',['events'=>$event]);
+
 	}
 }

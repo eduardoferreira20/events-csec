@@ -14,7 +14,6 @@ Eventos disponíveis
 			<th>Local</th>
 			<th>Cidade</th>
 			<th>Valor</th>
-			<th>Inicio</th>
 			@auth('admin-web')
 			<th>Ação</th>
 			@endauth
@@ -32,7 +31,6 @@ Eventos disponíveis
 			@else
 			<td>grátis</td>
 			@endif
-			<td>{{$titulo->inicio_inscricoes}}</td>
 			@auth('admin-web')
 			<td>
 				<a class="btn btn-danger" href="javascript:(confirm('Deletar esse vento?') ? window.location.href='{{route('events.deletar', $titulo->id)}}' : false)">Deletar</a>

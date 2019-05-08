@@ -17,6 +17,12 @@ Editar informações
 Editar informações de palestrante
 @elseif($field == "add_palestrante")
 Adicionar palestrante
+@elseif($field == "adicionar_palestras")
+Adicionar palestra
+@elseif($field == "palestras")
+Editar informações da palestra
+@elseif($field == "add_minicurso")
+Adicionar minicurso
 @endif
 @endsection
 
@@ -89,13 +95,17 @@ Adicionar palestrante
 </div>
 @elseif($field == "palestrantes")
 <div class="d-flex my-4">
-  {!! Form::open(array('route' => ['events.edit', $id],'method'=>'POST')) !!}
+  {!! Form::open(array('route' => ['events.edit', $id],'method'=>'POST', 'files' => true)) !!}
   {!! Form::label('nome','Nome completo do palestrante:') !!}
   {!! Form::text('nome', $old->nome, ['class' => 'form-control mb-4']) !!}
   {!! Form::label('instituicao','Instituição responsável:') !!}
   {!! Form::text('instituicao', $old->instituicao, ['class' => 'form-control mb-4']) !!}
+  {!! Form::label('cargo','Profissão do palestrante:') !!}
+  {!! Form::text('cargo', $old->cargo, ['class' => 'form-control mb-4']) !!}
   {!! Form::label('url','Endereço web da Instituição:') !!}
   {!! Form::text('url', $old->url, ['class' => 'form-control mb-4']) !!}
+  {!! Form::label('foto_perfil','Enviar foto:') !!}
+  {!! Form::file('foto_perfil', ['class' => 'file-field', 'accept' => 'application/pdf, image/jpeg, image/png, image/jpg']) !!}
   <div class="d-flex flex-column">
     {!! Form::label('input','Descrição do palestrante:') !!}
     {!! Form::textarea('input', $old->apresentacao, ['id' => 'editor']) !!}   
@@ -128,6 +138,56 @@ Adicionar palestrante
       Voltar
     </a>
     {!! Form::hidden('info', 'adicionar_palestrante') !!}
+    {!! Form::submit('Salvar', ['class'=>'btn btn-primary']) !!}
+  </div>
+  {!! Form::close() !!}
+</div>
+@elseif($field == "add_minicurso")
+<div class="d-flex my-4">
+  {!! Form::open(array('route' => ['events.edit', $id],'method'=>'POST')) !!}
+  {!! Form::label('title','Título:') !!}
+  {!! Form::text('title', null, ['class' => 'form-control mb-4']) !!}
+  {!! Form::label('palesrante1','Palestrante:') !!}
+  {!! Form::text('palestrante1', null, ['class' => 'form-control mb-4']) !!}
+  {!! Form::label('palesrante2','Palestrante:') !!}
+  {!! Form::text('palestrante2', null, ['class' => 'form-control mb-4']) !!}
+  {!! Form::label('palesrante3','Palestrante:') !!}
+  {!! Form::text('palestrante3', null, ['class' => 'form-control mb-4']) !!}
+  {!! Form::label('palesrante4','Palestrante:') !!}
+  {!! Form::text('palestrante4', null, ['class' => 'form-control mb-4']) !!}
+  <div class="d-flex flex-fill mb-4">
+  <div class="d-flex flex-column mb-4">
+    {!! Form::label('start_date','Data:') !!}
+    {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
+  </div>
+</div>
+  <div class="d-flex flex-fill mb-4">
+  <div class="d-flex flex-column mr-4 clockpicker">
+    {!! Form::label('start_time','Horário inicial:') !!}
+    {!! Form::text('start_time', null, ['class' => 'form-control', 'placeholder' => '--:--']) !!}
+  </div>
+  <div class="d-flex flex-column mr-4 clockpicker">
+    {!! Form::label('end_time','Horário final:') !!}
+    {!! Form::text('end_time', null, ['class' => 'form-control', 'placeholder' => '--:--']) !!}
+  </div>
+</div>
+  <div class="d-flex flex-column mb-4">
+    {!! Form::label('hora_comple','Horas ofertadas:') !!}
+    {!! Form::text('hora_comple', null, ['class' => 'form-control']) !!}
+  </div>
+  <div class="d-flex flex-column mb-4">
+    {!! Form::label('local','Local do curso:') !!}
+    {!! Form::text('local', null, ['class' => 'form-control']) !!}
+  </div>
+  <div class="d-flex flex-column">
+    {!! Form::label('input','Descrição do minicurso:') !!}
+    {!! Form::textarea('input', null, ['id' => 'editor']) !!} 
+  </div> 
+  <div class="mt-4">
+    <a href="{{ route('events.show', ['id' => $id]) }}" class="btn btn-primary mr-3">
+      Voltar
+    </a>
+    {!! Form::hidden('info', 'adicionar_minicurso') !!}
     {!! Form::submit('Salvar', ['class'=>'btn btn-primary']) !!}
   </div>
   {!! Form::close() !!}

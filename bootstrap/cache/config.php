@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:bUTtlreDOJ74CHfD6WYUoePPjyMJe1/5ohKxk000Yi0=',
+    'key' => 'base64:nP9jGK3Kwx9k84OSQ3kfQEkhKgKzOFCsXl/W9Sg+M+A=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -220,7 +220,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\events-csec\\storage\\framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -333,10 +333,10 @@
     'orientation' => 'portrait',
     'defines' => 
     array (
-      'font_dir' => 'C:\\xampp\\htdocs\\events-csec\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\events-csec\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\windows\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\events-csec',
+      'font_dir' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\fonts/',
+      'font_cache' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\Eduardo\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\events-csec\\events-csec',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
@@ -359,22 +359,22 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\events-csec\\storage\\app',
+        'root' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\events-csec\\storage\\app/public',
+        'root' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
       array (
         'driver' => 's3',
-        'key' => NULL,
-        'secret' => NULL,
-        'region' => NULL,
-        'bucket' => NULL,
+        'key' => '',
+        'secret' => '',
+        'region' => 'us-east-1',
+        'bucket' => '',
         'url' => NULL,
       ),
     ),
@@ -409,13 +409,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\events-csec\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\events-csec\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -479,7 +479,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\events-csec\\resources\\views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\resources\\views/vendor/mail',
       ),
     ),
     'log_channel' => NULL,
@@ -567,7 +567,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\events-csec\\storage\\framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -587,9 +587,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\events-csec\\resources\\views',
+      0 => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\events-csec\\storage\\framework\\views',
+    'compiled' => 'C:\\xampp\\htdocs\\events-csec\\events-csec\\storage\\framework\\views',
   ),
   'debug-server' => 
   array (

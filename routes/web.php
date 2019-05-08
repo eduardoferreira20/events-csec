@@ -19,7 +19,7 @@ Route::get('eventos/{id}', 'EventController@events')->name('events.show');
 Route::post('eventos/{id}', 'EventController@edit')->name('events.edit');
 Route::get('eventos/deletar/{id}', 'EventController@deletar')->name('events.deletar');
 
-Route::post('eventos/{id}/inscricoes/', 'InscricaoController@inscricoes')->name('events.inscricoes');
+Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('events.inscricoes');
 
 Route::get('users/{id}', 'UserController@index')->name('user.index');
 Route::post('users/{id}', 'UserController@edit')->name('user.edit');
