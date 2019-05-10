@@ -28,10 +28,7 @@
 {!! Form::label('comprovante','Enviar comprovante:') !!}
 {!! Form::file('comprovante', ['class' => 'file-field', 'accept' => 'application/pdf, image/jpeg, image/png, image/jpg']) !!}
 <a href="{{ route('events.show', ['id' => $evento->id]) }}" class="btn btn-primary mr-3">Voltar</a>
-
 {!! Form::hidden('info', 'inscrever') !!}
-{!! Form::hidden('user_id', '1') !!}
-{!! Form::hidden('user_name', 'Jair Medeiros Ferreira Filho') !!}
 {!! Form::submit('Enviar',['class'=>'btn btn-primary my-4']) !!}
 {!! Form::close() !!}
 @endif

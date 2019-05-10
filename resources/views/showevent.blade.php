@@ -18,6 +18,10 @@
       <a class="btn btn-link" href="{{ route('user.index', ['id' => $info->id]) }}">
         {{ $info->name }}
       </a>
+      <h4>
+      Para mais informações, acesse:
+      <a href="http://conparupe.wixsite.com/conpar2019">Site CONPAR</a>
+      </h4>
       <h6>Período:
         {{$data['start_date']}}  às  {{$data['start_time']}}
         @if($data['start_date'] != $data['end_date'])
@@ -153,7 +157,7 @@
   <div class="d-flex flex-column" id="palestras">
     <div class="d-flex mr-auto mb-3">
       <h2>
-        Palestras:
+        Inscrição evento:
       </h2>
     </div>
     
@@ -161,14 +165,14 @@
     <div id="inscricao" class="tab-pane fade in active">
       <div class="card">
         <div class="card-body">
-          @if($data['inicio_inscricoes'] == null)
           @auth('admin-web')
+          @if($data['inicio_inscricoes'] == null)
           Datas não definidas!
           {!! Form::open(array('route' => ['events.inscricoes', $data['id']],'method'=>'POST')) !!}
           {!! Form::hidden('info', 'mostrar_edicao') !!}
           {!! Form::submit('Definir datas', ['class'=>'btn btn-danger']) !!}
           {!! Form::close() !!}
-          @elseif($data['inicio_inscricoes'] && $data['fim_inscricoes'] != null)
+          @elseif($data['inicio_inscricoes']  != null)
           Deseja mudar as datas?
           {!! Form::open(array('route' => ['events.inscricoes', $data['id']],'method'=>'POST')) !!}
           {!! Form::hidden('info', 'mostrar_edicao') !!}
@@ -195,20 +199,33 @@
       </h2>
     </div>
     <div class="card" style="width: 32.5%;">
-    @foreach ($palestrantes as $palestrante)
+    @foreach ($oficinas as $cursos)
   <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" class="card-img-top" alt="...">
+
   <div class="card-body">
-    <h5 class="card-title">{{$palestrante->nome}}</h5>
-    <p class="card-text">{{$palestrante->apresentacao}}</p>
+    <h5 class="card-title">{{$cursos->titulo}}</h5>
+    <p class="card-text">{{$cursos->apresentation}}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{$palestrante->nome}}</li>
-    <li class="list-group-item">{{$palestrante->instituicao}}</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+    <li class="list-group-item">{{$cursos->palestrante1}}</li>
+    @if($cursos->palestrante2 != null)
+    <li class="list-group-item">{{$cursos->palestrante2}}</li>
+    <li class="list-group-item">{{$cursos->palestrante3}}</li>
+    <li class="list-group-item">{{$cursos->palestrante4}}</li>
+    @endif
+    <li class="list-group-item">{{$cursos->start_date}}</li>
+    <li class="list-group-item">{{$cursos->valor}}</li>
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">Editar Minicurso</a>
-    <a href="#" class="card-link">Inscreva-se</a>
+    <div class="d-flex">
+            @auth('admin-web')
+            {!! Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')) !!}
+            {!! Form::hidden('info', 'oficinas') !!}
+            {!! Form::hidden('old', $cursos->id) !!}
+            {!! Form::submit('Editar campo', ['class'=>'btn btn-primary']) !!}
+            {!! Form::close() !!}
+            @endauth
+          </div> 
   </div>
   @endforeach 
   @auth('admin-web')
@@ -218,10 +235,10 @@
           {!! Form::submit('+ Adicionar minicurso', ['class'=>'btn btn-link']) !!}
           {!! Form::close() !!}
         </div>
-        @endauth
+   @endauth
 </div>
 </div>
-
+ @auth('admin-web')
 <div class="d-flex flex-column" id="credenciamento">
   <div class="d-flex mr-auto mb-3">
     <h2>
@@ -233,7 +250,7 @@
       <li class="active">
         <a data-toggle="tab" href="#confirmacao">Confirmação da Inscrição</a>
       </li>
-      <li class="">
+      <li class="present">
         <a data-toggle="tab" href="#ata">Ata de presentes</a>
       </li>
     </ul>
@@ -241,13 +258,41 @@
       <div id="confirmacao" class="tab-pane fade in active">
         <div class="card">
           <div class="card-body">
+            <div class="d-flex mb-5 flex-column">
 
+            <table  class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Status inscrições</th>
+                  <th scope="col">Ação</th>
+                </tr>
+              </thead>
+              <tbody> 
+               @foreach ($inscricaos as $inscricaos)
+               <tr>
+                <td scope="row">{{$inscricaos->user->name}}</td>
+                @if($inscricaos->status == 0)
+                <td>Aguardando confirmação...</td>
+                @else
+                <td>Inscrição confirmada!</td>
+                @endif
+                <td>
+                 <a class="btn btn-success" href="{{route('events.aprovar', $inscricaos->id)}}">Status</a>
+                 <a class="btn btn-danger" href="javascript:(confirm('Deletar essa inscrição?') ? window.location.href='{{route('events.deletarIns', $inscricaos->id)}}' : false)">Deletar</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div><div class="d-flex flex-column" id="relatorio">
+</div>
+<div class="d-flex flex-column" id="relatorio">
   <div class="d-flex mr-auto mb-3">
     <h2>
       Relatório final:
@@ -264,6 +309,7 @@
     </div>
   </div>
 </div>
+@endauth
 
 @endsection
 

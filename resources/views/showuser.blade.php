@@ -27,7 +27,6 @@
         <li class="active"><a data-toggle="tab" href="#apresentacao">Apresentação</a></li>
         <li><a data-toggle="tab" href="#dadosgerais">Dados Gerais</a></li>
         <li><a data-toggle="tab" href="#dadoscomplementares">Dados Complementares</a></li>
-        <!-- <li><a data-toggle="tab" href="#certificados">Certificados</a></li> -->
       </ul>
       <div class="tab-content">
         <div id="apresentacao" class="tab-pane fade in active">

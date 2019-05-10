@@ -19,7 +19,7 @@ class CreateOficinasTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
 
-            $table->string('title');
+            $table->string('titulo');
             $table->text('apresentation');
             $table->string('palestrante1');
             $table->string('palestrante2')->nullable();

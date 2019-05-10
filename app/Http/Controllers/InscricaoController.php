@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Inscricao;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class InscricaoController extends Controller
@@ -42,8 +43,10 @@ class InscricaoController extends Controller
 				abort(400, 'Nenhum arquivo foi enviado.');
 			}
 
+			$user = Auth::user()->id;
+
 			Inscricao::create([
-				'user_id' => $request['user_id'],
+				'user_id' => $user,
 				'event_id' => $id,
 				'status'=> false,
 				'comprovante_path' => $path,

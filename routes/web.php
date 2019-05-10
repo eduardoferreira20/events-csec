@@ -17,6 +17,8 @@ Route::post('eventos', 'EventController@adicionar')->name('events.add');
 
 Route::get('eventos/{id}', 'EventController@events')->name('events.show');
 Route::post('eventos/{id}', 'EventController@edit')->name('events.edit');
+Route::get('eventos/aprovar/{id}', 'EventController@aprovar')->name('events.aprovar');
+Route::get('eventos/deletarinscricao/{id}', 'EventController@deletarInscricao')->name('events.deletarIns');
 Route::get('eventos/deletar/{id}', 'EventController@deletar')->name('events.deletar');
 
 Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('events.inscricoes');
@@ -24,14 +26,11 @@ Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('
 Route::get('users/{id}', 'UserController@index')->name('user.index');
 Route::post('users/{id}', 'UserController@edit')->name('user.edit');
 
-Route::get('administrador', 'AdminController@index')->name('administrador.index');
-
 Route::resource('pdf', 'ParticipanteController');
 Route::get('pdf/download/{id}', 'ParticipanteController@pdfexport');
 
 Auth::routes();
 
-Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('profile', function () {
@@ -40,6 +39,3 @@ Route::get('profile', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
