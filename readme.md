@@ -29,6 +29,10 @@ and
 cd events-csec
 $ composer dumpautoload
 
+and 
+
+cd events-csec
+$ composer require Diegomoura/laravel-boleto
 ```
 
 
