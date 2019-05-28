@@ -22,7 +22,7 @@ Eventos disponíveis
 	<tbody>	
 		@foreach($events as $titulo)
 		<tr>
-			<td>{{$titulo->title}}</td>
+			<td><a class="btn btn-link" href="{{route('events.show',$titulo->id)}}">{{$titulo->title}}</a></td>
 			<td>{{$titulo->start_date}}</td>
 			<td>{{$titulo->local}}</td>
 			<td>{{$titulo->cidade}}</td>
@@ -34,7 +34,7 @@ Eventos disponíveis
 			@auth('admin-web')
 			<td>
 				<a class="btn btn-danger" href="javascript:(confirm('Deletar esse vento?') ? window.location.href='{{route('events.deletar', $titulo->id)}}' : false)">Deletar</a>
-				<a class="btn btn-default" href="{{route('events.edit',$titulo->id)}}">Editar</a>
+				<a class="btn btn-info" href="{{route('events.edit',$titulo->id)}}">Editar</a>
 			</td>
 			@endauth
 		</tr>

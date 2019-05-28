@@ -14,6 +14,7 @@ use DB;
 Use DateTime;
 use Validator;
 use Calendar;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -92,6 +93,7 @@ class EventController extends Controller
 			'title' => $event->title,
 			'apresentation' => $event->apresentation,
 			'inicio_inscricoes' => $event->inicio_inscricoes,
+			'fim_inscricoes' => $event->fim_inscricoes,
 			'start_date' => date('d-m', strtotime($event->start_date)),
 			'end_date' => date('d-m', strtotime($event->start_date)),
 			'all_day' => $event->all_day,
@@ -112,9 +114,13 @@ class EventController extends Controller
 
 		$oficinas = DB::table('oficinas')->where('event_id',$id)->get();
 
-		$inscricaos = Inscricao::where('event_id',$id)->get();				
+		$inscricaos = Inscricao::where('event_id',$id)->get();
 
-		return view('showevent')->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes)->with('palestras', $palestras)->with('oficinas',$oficinas)->with('inscricaos', $inscricaos)->with('users',$userID);
+		$presenca = Inscricao::where('event_id',$id)->get();	
+
+		$hora = Carbon::now();			
+
+		return view('showevent',compact('hora'))->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes)->with('palestras', $palestras)->with('oficinas',$oficinas)->with('inscricaos', $inscricaos)->with('presenca',$presenca);
 
 	}
 
@@ -131,6 +137,23 @@ class EventController extends Controller
     	}if ($aprovar->status == '0') {
         
         $aprovar->update(['status' => '1']);
+
+       		 return back();
+    	}
+	}
+	public function presenca($id){
+
+		$presenca =  Inscricao::find($id);
+
+		if ($presenca->presenca == '1'){
+
+			$presenca->update(['presenca' => '0']);
+
+			return back();
+
+    	}if ($presenca->presenca == '0') {
+        
+        $presenca->update(['presenca' => '1']);
 
        		 return back();
     	}

@@ -25,6 +25,7 @@ class CreateInscricoesTable extends Migration
             $table->string('comprovante_path')->nullable();
 
             $table->boolean('status');
+            $table->boolean('presenca');
             $table->timestamps();
         });
     }

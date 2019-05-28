@@ -14,7 +14,7 @@
     background-repeat: no-repeat;
     transform: rotate(270deg);
     transform-origin:47% 53%;  
-    height: 100%;
+    height: 101%;
     width: 1100px;
     position: fixed;
   }
@@ -42,7 +42,7 @@
     <div class="conteiner">
       <div class="r">
         <div class="col-md-12">
-          <div class="table"><p>Certificamos que <strong>{{$user->name}}</strong>, portador do documento <strong>{{$user->documento}}</strong>, participou com exito do evento <strong>{{$user->name}}</strong>  realizado na <strong>POLI/UPE</strong> na cidade de <strong>Recife</strong>, contabilizando carga horária total de <strong>{{$user->name}}</strong> horas. </p></div>
+          <div class="table"><p>Certificamos que <strong>{{$user->name}}</strong>, portador do documento <strong>{{$user->documento}}</strong>, participou com exito do evento <strong>{{$user->evento->id}}</strong>  realizado na <strong>POLI/UPE</strong> na cidade de <strong>Recife</strong>, contabilizando carga horária total de <strong>{{$user->name}}</strong> horas. </p></div>
         </div>
       </div>
      </div> 

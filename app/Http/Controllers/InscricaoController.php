@@ -51,6 +51,7 @@ class InscricaoController extends Controller
 				'status'=> false,
 				'comprovante_path' => $path,
 				'status' => false,
+				'presenca' => false,
 			]);
 
 			return Redirect::to(route('events.show', ['id' => $id]));

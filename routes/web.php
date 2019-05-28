@@ -18,6 +18,7 @@ Route::post('eventos', 'EventController@adicionar')->name('events.add');
 Route::get('eventos/{id}', 'EventController@events')->name('events.show');
 Route::post('eventos/{id}', 'EventController@edit')->name('events.edit');
 Route::get('eventos/aprovar/{id}', 'EventController@aprovar')->name('events.aprovar');
+Route::get('eventos/presenca/{id}', 'EventController@presenca')->name('events.presenca');
 Route::get('eventos/deletarinscricao/{id}', 'EventController@deletarInscricao')->name('events.deletarIns');
 Route::get('eventos/deletar/{id}', 'EventController@deletar')->name('events.deletar');
 
