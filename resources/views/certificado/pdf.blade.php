@@ -15,7 +15,7 @@
     transform: rotate(270deg);
     transform-origin:47% 53%;  
     height: 101%;
-    width: 1100px;
+    width: 1110px;
     position: fixed;
   }
 
@@ -24,9 +24,14 @@
   }
 
   .table{
-    padding-top: 36%;
+    padding-top: 6%;
     padding-left: 47%;
     width: 49%;
+  }
+
+  .data{
+    padding-top: 24.5%;
+    padding-left: 55%;
   }
 
   p { 
@@ -42,7 +47,16 @@
     <div class="conteiner">
       <div class="r">
         <div class="col-md-12">
-          <div class="table"><p>Certificamos que <strong>{{$user->name}}</strong>, portador do documento <strong>{{$user->documento}}</strong>, participou com exito do evento <strong>{{$user->evento->id}}</strong>  realizado na <strong>POLI/UPE</strong> na cidade de <strong>Recife</strong>, contabilizando carga horária total de <strong>{{$user->name}}</strong> horas. </p></div>
+          <div class="data"> 
+            @if(date('m', strtotime($user->evento->start_date) == 2))
+            <p>{!!$user->evento->cidade!!}, {{ date('d', strtotime($user->evento->start_date)) }} de Abril de {{ date('Y', strtotime($user->evento->start_date)) }}</p>
+            @elseif(date('m', strtotime($user->evento->start_date) == 3))
+            <p>{!!$user->evento->cidade!!}, {{ date('d', strtotime($user->evento->start_date)) }} de Março de {{ date('Y', strtotime($user->evento->start_date)) }} e {!!$user->evento->start_date->day!!}</p>
+            @endif
+          </div>
+          <div class="table">
+            <p>Certificamos que <strong>{{$user->name}}</strong>, portador do documento <strong>{{$user->documento}}</strong>, participou com exito do evento <strong>{{$user->evento->title}}</strong>  realizado na <strong>{!!$user->evento->local!!}</strong> na cidade de <strong>{!!$user->evento->cidade!!}</strong>, contabilizando carga horária total de <strong>{!!$user->evento->hora_comple!!}</strong> horas.</p>
+          </div>
         </div>
       </div>
      </div> 

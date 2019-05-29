@@ -5,24 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Participante;
 use App\Event;
+use App\User;
 use App\Inscricao;
-use Carbon\Carbon;            
+use Carbon\Carbon;
+use DB;
 use PDF;
 
 class ParticipanteController extends Controller
 {
     public function index(){
     	$user=Participante::all();
-    	return view('certificado.certificado' , ['user'=>$user]);
-    }
-
-    public function events(){
-        return hasMany(Event::class);
+    	return view('certificado.certificado' , compact('user'));
     }
 
     public function pdfexport($id){
-    	$user=Participante::find($id);
-    	$pdf=PDF::loadView('certificado.pdf', ['user' => $user])->setPaper('A4','portrait');
+    	$user=User::where('id',$id)->first();
+        $pdf=PDF::loadView('certificado.pdf', compact('user'))->setPaper('A4','portrait');
     	$fileName= $user->name;
     	return $pdf->stream($fileName.'.pdf');
     }

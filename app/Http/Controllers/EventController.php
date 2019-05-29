@@ -10,6 +10,7 @@ use App\Palestrante;
 use App\Palestra;
 use App\Oficinas;
 use App\Inscricao;
+use App\User;
 use DB;
 Use DateTime;
 use Validator;
@@ -59,10 +60,6 @@ class EventController extends Controller
 		$start = date('Y-m-d H:i:s', strtotime("$sd $st"));
 		$end = date('Y-m-d H:i:s', strtotime("$ed $et"));
 
-		$perfil = $request->file('foto_perfil');
-		$extensao = $request->perfil->getClientOriginalExtension();
-		$path = url('storage/'.$perfil->storeAs('foto_perfil', $request['user_id'].'.' .$extensao));
-
 		$event = new Event;
 		$event->title = $request->input('event_name');
 		$event->start_date = $start;
@@ -85,8 +82,6 @@ class EventController extends Controller
 
 		$user = DB::table('users')
 		->where('id', $event->user_id)->first();
-
-		$userID = DB::table('users')->get();
 
 		$event = array(
 			'id'	=> $event->id,
@@ -116,7 +111,7 @@ class EventController extends Controller
 
 		$inscricaos = Inscricao::where('event_id',$id)->get();
 
-		$presenca = Inscricao::where('event_id',$id)->get();	
+		$presenca = Inscricao::where('event_id',$id)->get();
 
 		$hora = Carbon::now();			
 
@@ -134,12 +129,12 @@ class EventController extends Controller
 
 			return back();
 
-    	}if ($aprovar->status == '0') {
-        
-        $aprovar->update(['status' => '1']);
+		}if ($aprovar->status == '0') {
 
-       		 return back();
-    	}
+			$aprovar->update(['status' => '1']);
+
+			return back();
+		}
 	}
 	public function presenca($id){
 
@@ -151,12 +146,12 @@ class EventController extends Controller
 
 			return back();
 
-    	}if ($presenca->presenca == '0') {
-        
-        $presenca->update(['presenca' => '1']);
+		}if ($presenca->presenca == '0') {
 
-       		 return back();
-    	}
+			$presenca->update(['presenca' => '1']);
+
+			return back();
+		}
 	}
 	public function deletarInscricao($id){
 		$inscricao = Inscricao::find($id);
@@ -425,10 +420,6 @@ class EventController extends Controller
 
 			return Redirect::to(route('events.show', ['id' => $id]));		
 		}elseif($request['info'] == 'adicionar_palestrante'){
-
-			$perfil = $request->file('foto_perfil');
-			$extensao = $request->perfil->getClientOriginalExtension();
-			$path = url('storage/'.$perfil->storeAs('foto_perfil', $request['user_id'].'.' .$extensao));
 
 			Palestrante::create([
 				'event_id' => $id,

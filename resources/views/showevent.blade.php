@@ -280,6 +280,7 @@
                     @else
                     <td>Inscrição confirmada!</td>
                     @endif
+                   
                     <td>
                       @if($inscricaos->status == 0)
                      <a class="btn btn-success" href="{{route('events.aprovar', $inscricaos->id)}}">Status</a>
@@ -320,9 +321,15 @@
               @else
               <td>Presença confirmada!</td>
               @endif
+              @if($hora > $data['end_date'])
+              <td>
+              Evento encerrado!
+              </td>
+              @else
               <td>
                 <a class="btn btn-success" href="{{route('events.presenca', $presenca->id)}}">Status</a>
              </td>
+             @endif
              @endif
            </tr>
            @endforeach
@@ -333,6 +340,42 @@
  </div>
 </div>
 </div>
+</div>
+<div class="d-flex flex-column" id="credenciamento">
+    <div class="d-flex mr-auto mb-3">
+      <h2>
+        Certificados:
+      </h2>
+    </div>
+    <div class="d-flex flex-column text-justify">
+      <div class="tab-content">
+        <div id="confirmacao" class="tab-pane fade in active">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex mb-5 flex-column">
+
+                <table  class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Ação</th>
+                    </tr>
+                  </thead>
+                  <tbody> 
+                  <tr>
+                    <td>
+                      
+                    </td>
+                  </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+
+   </div>
 </div>
 <div class="d-flex flex-column" id="relatorio">
   <div class="d-flex mr-auto mb-3">
