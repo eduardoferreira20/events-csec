@@ -12,6 +12,7 @@ use App\Oficinas;
 use App\Inscricao;
 use App\User;
 use DB;
+use PDF;
 Use DateTime;
 use Validator;
 use Calendar;
@@ -113,11 +114,20 @@ class EventController extends Controller
 
 		$presenca = Inscricao::where('event_id',$id)->get();
 
+		$certificado=Inscricao::where('event_id',$id)->get();
+
 		$hora = Carbon::now();			
 
-		return view('showevent',compact('hora'))->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes)->with('palestras', $palestras)->with('oficinas',$oficinas)->with('inscricaos', $inscricaos)->with('presenca',$presenca);
+		return view('showevent',compact('hora'))->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes)->with('palestras', $palestras)->with('oficinas',$oficinas)->with('inscricaos', $inscricaos)->with('presenca',$presenca)->with('certificado',$certificado);
 
 	}
+
+	 public function pdfexport($id){
+    	$user=Inscricao::where('user_id',$id)->get();
+        $pdf=PDF::loadView('certificado.pdf', compact('user'))->setPaper('A4','portrait');
+    	$fileName= $certificado->user->name;
+    	return $pdf->stream($fileName.'.pdf');
+    }
 
 	public function aprovar($id){
 

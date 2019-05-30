@@ -254,7 +254,7 @@
           <a data-toggle="tab" href="#confirmacao">Confirmação da Inscrição</a>
         </li>
         <li class="present">
-          <a data-toggle="tab" href="#ata">Ata de presentes</a>
+          <a data-toggle="tab" href="#ata">Ata de presença</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -359,13 +359,25 @@
                     <tr>
                       <th scope="col">Nome</th>
                       <th scope="col">Email</th>
+                      <th scope="col">CPF</th>
                       <th scope="col">Ação</th>
                     </tr>
                   </thead>
                   <tbody> 
-                  <tr>
+                  <tr   >
                     <td>
-                      
+                     @foreach($certificado as $certificado)
+                     @if($certificado->presenca == 1 && $inscricaos->status == 1)
+                     <tr>
+                      <td class="nome">{{$certificado->user->name}}</td>
+                      <td class="nome"> {{$certificado->user->email}}</td>
+                      <td class="nome">{{$certificado->user->documento}}</td>
+                      <td>
+                      <a href="{{(url('/pdf/download/'.$certificado->user->id) )}}" class="btn btn-primary" >Abrir</a>
+                    </td>
+                    </tr>
+                    @endif
+                    @endforeach
                     </td>
                   </tr>
                </tbody>

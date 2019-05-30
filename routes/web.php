@@ -27,8 +27,8 @@ Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('
 Route::get('users/{id}', 'UserController@index')->name('user.index');
 Route::post('users/{id}', 'UserController@edit')->name('user.edit');
 
-Route::resource('pdf', 'ParticipanteController');
-Route::get('pdf/download/{id}', 'ParticipanteController@pdfexport');
+Route::get('pdf/{id}', 'EventController@certificado')->name('evento.certificado');
+Route::get('pdf/download/{id}', 'EventController@pdfexport')->name('evento.pdf');
 
 Auth::routes();
 

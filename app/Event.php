@@ -15,7 +15,7 @@ class Event extends Model
 	}
 
 	public function user(){
-		return $this->hasOne('App\User');
+		return $this->hasOne('App\User','user_id');
 	}
 
 	public function deleta(){

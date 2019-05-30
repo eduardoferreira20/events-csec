@@ -23,7 +23,7 @@ Eventos disponíveis
 		@foreach($events as $titulo)
 		<tr>
 			<td><a class="btn btn-link" href="{{route('events.show',$titulo->id)}}">{{$titulo->title}}</a></td>
-			<td>{{$titulo->start_date}}</td>
+			<td>{{date('d/m - H:m a', strtotime($titulo->start_date))}}</td>
 			<td>{{$titulo->local}}</td>
 			<td>{{$titulo->cidade}}</td>
 			@if($titulo['valor'] != 0)

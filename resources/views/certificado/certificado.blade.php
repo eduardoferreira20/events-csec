@@ -42,9 +42,9 @@
               <tbody>
                @foreach($user as $user)
                <tr>
-                <p class="nome">{{$user->name}}</p>
-                <p class="nome"> {{$user->email}}</p>
-                <p class="nome">{{$user->documento}}</p>
+                <p class="nome">{{$user->user->name}}</p>
+                <p class="nome"> {{$user->user->email}}</p>
+                <p class="nome">{{$user->user->documento}}</p>
                 <p></p>
                <a href="{{(url('/pdf/download/'.$user->id) )}}" class="btn" >Download PDF</a>
               </tr>

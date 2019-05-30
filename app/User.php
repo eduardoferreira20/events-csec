@@ -31,10 +31,10 @@ class User extends Authenticatable
 
     
     public function evento(){
-        return $this->hasOne('App\Event');
+        return $this->hasOne('App\Event','user_id');
     }
 
-    public function certificado(){
+    public function certificado1(){
         return $this->hasMany('App\Inscricao');
     }
 

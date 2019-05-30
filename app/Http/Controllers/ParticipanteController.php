@@ -13,15 +13,15 @@ use PDF;
 
 class ParticipanteController extends Controller
 {
-    public function index(){
-    	$user=Participante::all();
-    	return view('certificado.certificado' , compact('user'));
+    public function certificado($id){
+    	$certificado=Inscricao::where('event_id',$id)->get();
+    	return view('events.show' , compact('certificado'));
     }
 
     public function pdfexport($id){
-    	$user=User::where('id',$id)->first();
+    	$user=User::where('id',$id)->get();
         $pdf=PDF::loadView('certificado.pdf', compact('user'))->setPaper('A4','portrait');
-    	$fileName= $user->name;
+    	$fileName= $certificado->user->name;
     	return $pdf->stream($fileName.'.pdf');
     }
 }
