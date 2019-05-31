@@ -46,7 +46,7 @@
                 <p class="nome"> {{$user->user->email}}</p>
                 <p class="nome">{{$user->user->documento}}</p>
                 <p></p>
-               <a href="{{(url('/pdf/download/'.$user->id) )}}" class="btn" >Download PDF</a>
+               <a href="{{(url('/pdf/download/'.$user->user->id) )}}" class="btn" >Download PDF</a>
               </tr>
               @endforeach
             </tbody>

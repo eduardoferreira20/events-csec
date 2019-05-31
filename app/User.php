@@ -34,8 +34,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Event','user_id');
     }
 
-    public function certificado1(){
-        return $this->hasMany('App\Inscricao');
+    public function certificado(){
+        return $this->hasMany('App\Inscricao','user_id','event_id');
     }
 
 }

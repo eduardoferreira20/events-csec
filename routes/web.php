@@ -27,8 +27,9 @@ Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('
 Route::get('users/{id}', 'UserController@index')->name('user.index');
 Route::post('users/{id}', 'UserController@edit')->name('user.edit');
 
-Route::get('pdf/{id}', 'EventController@certificado')->name('evento.certificado');
-Route::get('pdf/download/{id}', 'EventController@pdfexport')->name('evento.pdf');
+Route::get('certificado/download/{id}/usuario/{user_id}', 'ParticipanteController@pdfexport')->name('evento.pdf');
+
+Route::post('send', 'SendMailUserController@send')->name('send.email');
 
 Auth::routes();
 

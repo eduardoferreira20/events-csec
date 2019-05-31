@@ -14,6 +14,10 @@ class Event extends Model
 		return $this->hasMany('App\Palestrante');
 	}
 
+	public function inscricao(){
+		return $this->hasMany('App\Inscricao','event_id');
+	}
+
 	public function user(){
 		return $this->hasOne('App\User','user_id');
 	}

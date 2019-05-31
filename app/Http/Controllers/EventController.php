@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\InscricaoController; 
+use Illuminate\Support\Facades\Auth;
 use App\Event;
 use App\Palestrante;
 use App\Palestra;
@@ -116,26 +117,21 @@ class EventController extends Controller
 
 		$certificado=Inscricao::where('event_id',$id)->get();
 
-		$hora = Carbon::now();			
+		$hora = Carbon::now();	
 
 		return view('showevent',compact('hora'))->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes)->with('palestras', $palestras)->with('oficinas',$oficinas)->with('inscricaos', $inscricaos)->with('presenca',$presenca)->with('certificado',$certificado);
 
 	}
 
-	 public function pdfexport($id){
-    	$user=Inscricao::where('user_id',$id)->get();
-        $pdf=PDF::loadView('certificado.pdf', compact('user'))->setPaper('A4','portrait');
-    	$fileName= $certificado->user->name;
-    	return $pdf->stream($fileName.'.pdf');
-    }
 
 	public function aprovar($id){
 
-		$aprovar =  Inscricao::find($id);
+		$aprovar = Inscricao::find($id);
 
 		if ($aprovar->status == '1'){
 
 			$aprovar->update(['status' => '0']);
+			$aprovar->update(['presenca' => '0']);
 
 			return back();
 

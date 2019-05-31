@@ -16,6 +16,7 @@ class Inscricao extends Model
 		return $this->belongsTo('App\User');
 	}
 
+
 	public function evento(){
 		
 		return $this->belongsTo('App\Event','event_id');

@@ -241,7 +241,7 @@
       @endauth
     </div>
   </div>
-  @auth('admin-web')
+  
   <div class="d-flex flex-column" id="credenciamento">
     <div class="d-flex mr-auto mb-3">
       <h2>
@@ -253,9 +253,11 @@
         <li class="active">
           <a data-toggle="tab" href="#confirmacao">Confirmação da Inscrição</a>
         </li>
+        @auth('admin-web')
         <li class="present">
           <a data-toggle="tab" href="#ata">Ata de presença</a>
         </li>
+        @endauth
       </ul>
       <div class="tab-content">
         <div id="confirmacao" class="tab-pane fade in active">
@@ -268,7 +270,9 @@
                     <tr>
                       <th scope="col">Nome</th>
                       <th scope="col">Status inscrições</th>
+                       @auth('admin-web')
                       <th scope="col">Ação</th>
+                        @endauth
                     </tr>
                   </thead>
                   <tbody> 
@@ -280,7 +284,7 @@
                     @else
                     <td>Inscrição confirmada!</td>
                     @endif
-                   
+                   @auth('admin-web')
                     <td>
                       @if($inscricaos->status == 0)
                      <a class="btn btn-success" href="{{route('events.aprovar', $inscricaos->id)}}">Status</a>
@@ -289,6 +293,7 @@
                     @endif
                      <a class="btn btn-danger" href="javascript:(confirm('Deletar essa inscrição?') ? window.location.href='{{route('events.deletarIns', $inscricaos->id)}}' : false)">Deletar</a>
                    </td>
+                   @endauth
                  </tr>
                  @endforeach
                </tbody>
@@ -297,7 +302,6 @@
          </div>
        </div>
      </div>
-
    <div id="ata" class="tab-pane fade">
     <div class="card">
       <div class="card-body">
@@ -321,15 +325,12 @@
               @else
               <td>Presença confirmada!</td>
               @endif
-              @if($hora > $data['end_date'])
-              <td>
-              Evento encerrado!
-              </td>
-              @else
+      @auth('admin-web')
+
               <td>
                 <a class="btn btn-success" href="{{route('events.presenca', $presenca->id)}}">Status</a>
              </td>
-             @endif
+             @endauth
              @endif
            </tr>
            @endforeach
@@ -341,6 +342,7 @@
 </div>
 </div>
 </div>
+@auth('admin-web')
 <div class="d-flex flex-column" id="credenciamento">
     <div class="d-flex mr-auto mb-3">
       <h2>
@@ -367,16 +369,16 @@
                   <tr   >
                     <td>
                      @foreach($certificado as $certificado)
-                     @if($certificado->presenca == 1 && $inscricaos->status == 1)
+                     @if($certificado->presenca == 1)
                      <tr>
                       <td class="nome">{{$certificado->user->name}}</td>
-                      <td class="nome"> {{$certificado->user->email}}</td>
+                      <td class="nome">{{$certificado->user->email}}</td>
                       <td class="nome">{{$certificado->user->documento}}</td>
                       <td>
-                      <a href="{{(url('/pdf/download/'.$certificado->user->id) )}}" class="btn btn-primary" >Abrir</a>
+                      <a target="_blank" href="{{(url('/certificado/download/'.$certificado->evento->id.'/usuario/'.$certificado->user->id) )}}" class="btn btn-primary" >Abrir</a>
                     </td>
-                    </tr>
                     @endif
+                    </tr>
                     @endforeach
                     </td>
                   </tr>
@@ -386,9 +388,9 @@
          </div>
        </div>
      </div>
-
    </div>
 </div>
+@endauth
 <div class="d-flex flex-column" id="relatorio">
   <div class="d-flex mr-auto mb-3">
     <h2>
@@ -406,7 +408,6 @@
     </div>
   </div>
 </div>
-@endauth
 
 @endsection
 
