@@ -29,7 +29,7 @@ Route::post('users/{id}', 'UserController@edit')->name('user.edit');
 
 Route::get('certificado/download/{id}/usuario/{user_id}', 'ParticipanteController@pdfexport')->name('evento.pdf');
 
-Route::post('send', 'SendMailUserController@send')->name('send.email');
+Route::get('send/user/{id}/evento/{user_id}', 'SendEmailUserController@send')->name('send.email');
 
 Auth::routes();
 

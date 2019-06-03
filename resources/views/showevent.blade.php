@@ -323,10 +323,9 @@
               @if($presenca->presenca == 0)
               <td>Faltou</td>
               @else
-              <td>Presença confirmada!</td>
+              <td>Presente</td>
               @endif
-      @auth('admin-web')
-
+            @auth('admin-web')
               <td>
                 <a class="btn btn-success" href="{{route('events.presenca', $presenca->id)}}">Status</a>
              </td>
@@ -375,7 +374,8 @@
                       <td class="nome">{{$certificado->user->email}}</td>
                       <td class="nome">{{$certificado->user->documento}}</td>
                       <td>
-                      <a target="_blank" href="{{(url('/certificado/download/'.$certificado->evento->id.'/usuario/'.$certificado->user->id) )}}" class="btn btn-primary" >Abrir</a>
+                      <a target="_blank" href="{{(url('/certificado/download/'.$certificado->evento->id.'/usuario/'.$certificado->user->id) )}}" class="btn btn-success" >Abrir</a>
+                      <a href="{{url('/send/user/'.$certificado->evento->id.'/evento/'.$certificado->user->id)}}" class="btn btn-info">Enviar</a>
                     </td>
                     @endif
                     </tr>

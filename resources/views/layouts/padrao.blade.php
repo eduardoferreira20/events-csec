@@ -184,6 +184,7 @@
 
 	<script src="{{ asset('js/lib/jquery-3.3.1.js') }}"></script>
 	<script src="{{ asset('js/lib/bootstrap.min.js') }}"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	@yield('script')
 
 </html>	
