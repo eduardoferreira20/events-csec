@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Certificado do evento $evento->title</title>
+ <title>Certificado evento {{$title}}</title>
 </head>
 <body>
 	<div>
@@ -10,7 +10,7 @@
 	<br>
 	<br>
 	<div class="texto">
- 	<p>Certificado do evento {{$title}}
+ 	<p>Certificado do evento <strong>{{$title}}</strong>
  		<br>
  	<a href="{{(url('/certificado/download/'.$evento_id.'/usuario/'.$user_id) )}}" class="btn btn-success"">abrir</a></p>
  	</div>

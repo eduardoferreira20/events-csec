@@ -177,7 +177,7 @@
             {!! Form::close() !!}
             @endauth
             @else
-            @if($hora > $data['fim_inscricoes'])
+            @if(date('d-m', strtotime($hora)) > date('d-m',strtotime($data['fim_inscricoes'])))
             <div class="alert alert-danger" role="alert">
               Inscrições encerradas!
             </div>
@@ -195,7 +195,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex flex-column" id="palestras">
+  <!-- <div class="d-flex flex-column" id="palestras">
     <div class="d-flex mr-auto mb-3">
       <h2>
         Minicursos:
@@ -240,7 +240,7 @@
       </div>
       @endauth
     </div>
-  </div>
+  </div> -->
   
   <div class="d-flex flex-column" id="credenciamento">
     <div class="d-flex mr-auto mb-3">
@@ -360,7 +360,7 @@
                     <tr>
                       <th scope="col">Nome</th>
                       <th scope="col">Email</th>
-                      <th scope="col">CPF</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Ação</th>
                     </tr>
                   </thead>
@@ -372,7 +372,11 @@
                      <tr>
                       <td class="nome">{{$certificado->user->name}}</td>
                       <td class="nome">{{$certificado->user->email}}</td>
-                      <td class="nome">{{$certificado->user->documento}}</td>
+                      @if($certificado->certificado == 0)
+                      <td class="nome">Não enviado</td>
+                      @else
+                      <td class="nome">Enviado</td>
+                      @endif
                       <td>
                       <a target="_blank" href="{{(url('/certificado/download/'.$certificado->evento->id.'/usuario/'.$certificado->user->id) )}}" class="btn btn-success" >Abrir</a>
                       <a href="{{url('/send/user/'.$certificado->evento->id.'/evento/'.$certificado->user->id)}}" class="btn btn-info">Enviar</a>

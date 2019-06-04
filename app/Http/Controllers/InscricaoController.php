@@ -50,7 +50,6 @@ class InscricaoController extends Controller
 				'event_id' => $id,
 				'status'=> false,
 				'comprovante_path' => $path,
-				'status' => false,
 				'presenca' => false,
 			]);
 
