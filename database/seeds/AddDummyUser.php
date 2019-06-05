@@ -21,5 +21,16 @@ class AddDummyUser extends Seeder
             'tipo' => '1',
             'documento' => '70555713407',
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Rafael Ferreira Pinto',
+            'email' => 'animedudu12345@gmail.com',
+            'password' => Hash::make('123456'),
+            'instituicao' => 'Universidade de Pernambuco',
+            'nacionalidade' => 'Brasileiro',
+            'tipo' => '1',
+            'documento' => '57418644953',
+        ]);
+
     }
 }

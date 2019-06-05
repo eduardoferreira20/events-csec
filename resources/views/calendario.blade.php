@@ -55,20 +55,24 @@ Calendário de eventos
                 </div>
                 <div class="d-flex flex-column mr-4">
                     {!! Form::label('valor','Valor do evento:') !!}
-                {!! Form::text('valor', null, ['class' => 'form-control']) !!}
+                {!! Form::text('valor', null, ['class' => 'form-control','placeholder' => 'Ex.: 20,00']) !!}
                 </div>
             </div>
             <div class="d-flex flex-column mb-4">
                 {!! Form::label('hora_comple','Horas complementares:') !!}
-                {!! Form::text('hora_comple', null, ['class' => 'form-control']) !!}
+                {!! Form::text('hora_comple', null, ['class' => 'form-control', 'placeholder' => 'Ex.: 8 (oito)']) !!}
             </div>
             <div class="d-flex flex-column mb-4">
                 {!! Form::label('local','Local do evento:') !!}
-                {!! Form::text('local', null, ['class' => 'form-control']) !!}
+                {!! Form::text('local', null, ['class' => 'form-control','placeholder' => 'Ex.: POLI(Escola Politecnica de Pernambuco)']) !!}
             </div>
             <div class="d-flex flex-column mb-4">
-                {!! Form::label('cidade','Cidade:') !!}
-                {!! Form::text('cidade', null, ['class' => 'form-control']) !!}
+                {!! Form::label('rua','Rua do evento:') !!}
+                {!! Form::text('rua', null, ['class' => 'form-control','placeholder' => 'Ex.: AV. Pedro Allain,88 ']) !!}
+            </div>
+            <div class="d-flex flex-column mb-4">
+                {!! Form::label('cidade','Bairro:') !!}
+                {!! Form::text('cidade', null, ['class' => 'form-control', 'placeholder' => 'Ex.: Recife']) !!}
             </div>
             <div class="d-flex flex-fill">
                 <div class="d-flex mr-4">

@@ -26,6 +26,8 @@ class CreateInscricoesTable extends Migration
 
             $table->boolean('status');
             $table->boolean('presenca');
+            $table->boolean('envio');
+            
             $table->timestamps();
         });
     }

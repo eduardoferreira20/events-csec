@@ -30,6 +30,7 @@ class CreateEventsTable extends Migration
             $table->string('hora_comple')->nullable();
             $table->string('local')->nullable();
             $table->string('cidade')->nullable();
+            $table->string('rua')->nullable();
             $table->timestamps();
         });
     }

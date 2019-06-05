@@ -54,12 +54,20 @@ Adicionar minicurso
     {!! Form::text('local', $old['local'], ['class' => 'form-control']) !!}
   </div>
   <div class="d-flex flex-column mb-4">
-    {!! Form::label('cidade','Cidade do evento:') !!}
+    {!! Form::label('rua','Rua do evento:') !!}
+    {!! Form::text('rua', $old['rua'], ['class' => 'form-control']) !!}
+  </div>
+  <div class="d-flex flex-column mb-4">
+    {!! Form::label('cidade','Bairro do evento:') !!}
     {!! Form::text('cidade', $old['cidade'], ['class' => 'form-control']) !!}
   </div>
   <div class="d-flex flex-column mb-4">
     {!! Form::label('valor','Valor do evento:') !!}
     {!! Form::text('valor', $old['valor'], ['class' => 'form-control']) !!}
+  </div>
+  <div class="d-flex flex-column mb-4">
+    {!! Form::label('hora_comple','Horas ofertadas:') !!}
+    {!! Form::text('hora_comple', $old['hora_comple'], ['class' => 'form-control']) !!}
   </div>
   <div class="d-flex flex-fill mb-4">
     <div class="d-flex flex-column mr-4">
@@ -106,10 +114,7 @@ Adicionar minicurso
   {!! Form::text('cargo', $old->cargo, ['class' => 'form-control mb-4']) !!}
   {!! Form::label('url','Endereço web da Instituição:') !!}
   {!! Form::text('url', $old->url, ['class' => 'form-control mb-4']) !!}
-  <div class="d-flex flex-column mb-4">
-  {!! Form::label('foto_perfil','Enviar foto:') !!}
-  {!! Form::file('foto_perfil', ['class' => 'file-field', 'accept' => 'application/pdf, image/jpeg, image/png, image/jpg']) !!}
-</div>
+ 
   <div class="d-flex flex-column">
     {!! Form::label('input','Descrição do palestrante:') !!}
     {!! Form::textarea('input', $old->apresentacao, ['id' => 'editor']) !!}   

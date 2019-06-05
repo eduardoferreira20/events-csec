@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\InscricaoController; 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 use App\Event;
 use App\Palestrante;
 use App\Palestra;
@@ -13,6 +15,7 @@ use App\Oficinas;
 use App\Inscricao;
 use App\User;
 use DB;
+use View;
 use PDF;
 Use DateTime;
 use Validator;
@@ -72,6 +75,7 @@ class EventController extends Controller
 		$event->valor = $request->input('valor');
 		$event->local = $request->input('local');
 		$event->cidade = $request->input('cidade');
+		$event->rua = $request->input('rua');
 		$event->hora_comple = $request->input('hora_comple');
 		$event->save();
 
@@ -99,6 +103,7 @@ class EventController extends Controller
 			'hora_comple' => $event->hora_comple,
 			'local' => $event->local,
 			'cidade' => $event->cidade,
+			'rua' => $event->rua,
 			'start_time' => date('H:i', strtotime($event->start_date)),
 			'end_time' => date('H:i', strtotime($event->end_date)),
 		);
@@ -132,6 +137,7 @@ class EventController extends Controller
 
 			$aprovar->update(['status' => '0']);
 			$aprovar->update(['presenca' => '0']);
+			$aprovar->update(['envio' => '0']);
 
 			return back();
 
@@ -149,6 +155,8 @@ class EventController extends Controller
 		if ($presenca->presenca == '1'){
 
 			$presenca->update(['presenca' => '0']);
+			$presenca->update(['envio' => '0']);
+
 
 			return back();
 
@@ -177,6 +185,7 @@ class EventController extends Controller
 				'title' => $check->title,
 				'local' => $check->local,
 				'cidade' => $check->cidade,
+				'rua' => $check->rua,
 				'valor' => $check->valor, 
 				'hora_comple' => $check->hora_comple,
 				'start_date' => date('Y-m-d', strtotime($check->start_date)),
@@ -253,7 +262,15 @@ class EventController extends Controller
 
 			DB::table('events')
 			->where('id', $id)
+			->update(['rua' => $request['rua']]);
+
+			DB::table('events')
+			->where('id', $id)
 			->update(['valor' => $request['valor']]);	
+
+			DB::table('events')
+			->where('id',$id)
+			->update(['hora_comple' => $request['hora_comple']]);
 
 			DB::table('events')
 			->where('id', $id)

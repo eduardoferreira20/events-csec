@@ -110,8 +110,8 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-3 text-center">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="{{$palestrante->nome}}"
-                  class="img-fluid z-depth-1-half rounded-circle">
+                  <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="{{$palestrante->nome}}"
+                  class="img-fluid z-depth-1-half rounded-circle"> -->
                   <div style="height: 10px"></div>
                   <p class="title mb-0">{{$palestrante->nome}}</p>
                   <p class="text-muted " style="font-size: 13px">{{$palestrante->cargo}}</p>
@@ -125,8 +125,8 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-3 text-center">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="IMG of Avatars"
-                  class="img-fluid z-depth-1-half rounded-circle">
+                  <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="IMG of Avatars"
+                  class="img-fluid z-depth-1-half rounded-circle"> -->
                   <div style="height: 10px"></div>
                   <p class="title mb-0">{{$palestrante->nome}}</p>
                   <p class="text-muted " style="font-size: 13px">{{$palestrante->cargo}}</p>
@@ -241,7 +241,7 @@
       @endauth
     </div>
   </div> -->
-  
+  @auth('admin-web')
   <div class="d-flex flex-column" id="credenciamento">
     <div class="d-flex mr-auto mb-3">
       <h2>
@@ -253,11 +253,9 @@
         <li class="active">
           <a data-toggle="tab" href="#confirmacao">Confirmação da Inscrição</a>
         </li>
-        @auth('admin-web')
         <li class="present">
           <a data-toggle="tab" href="#ata">Ata de presença</a>
         </li>
-        @endauth
       </ul>
       <div class="tab-content">
         <div id="confirmacao" class="tab-pane fade in active">
@@ -287,9 +285,9 @@
                    @auth('admin-web')
                     <td>
                       @if($inscricaos->status == 0)
-                     <a class="btn btn-success" href="{{route('events.aprovar', $inscricaos->id)}}">Status</a>
+                     <a class="btn btn-success" href="javascript:(confirm('Confirmar estatos da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
                      @else
-                      <a class="btn btn-warning" href="{{route('events.aprovar', $inscricaos->id)}}">Status</a>
+                      <a class="btn btn-warning" href="javascript:(confirm('Mudar estatos da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
                     @endif
                      <a class="btn btn-danger" href="javascript:(confirm('Deletar essa inscrição?') ? window.location.href='{{route('events.deletarIns', $inscricaos->id)}}' : false)">Deletar</a>
                    </td>
@@ -341,6 +339,7 @@
 </div>
 </div>
 </div>
+@endauth
 @auth('admin-web')
 <div class="d-flex flex-column" id="credenciamento">
     <div class="d-flex mr-auto mb-3">
@@ -372,10 +371,10 @@
                      <tr>
                       <td class="nome">{{$certificado->user->name}}</td>
                       <td class="nome">{{$certificado->user->email}}</td>
-                      @if($certificado->certificado == 0)
-                      <td class="nome">Não enviado</td>
+                      @if($certificado->envio == 0)
+                      <td class="nome"><strong>Não enviado</strong></td>
                       @else
-                      <td class="nome">Enviado</td>
+                      <td class="nome"><strong>Enviado</strong></td>
                       @endif
                       <td>
                       <a target="_blank" href="{{(url('/certificado/download/'.$certificado->evento->id.'/usuario/'.$certificado->user->id) )}}" class="btn btn-success" >Abrir</a>

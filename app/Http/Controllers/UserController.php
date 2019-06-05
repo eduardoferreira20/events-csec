@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use PDF;
 use App\Endereco;
+use App\Inscricao;
 
 class UserController extends Controller
 {
@@ -16,6 +17,8 @@ class UserController extends Controller
 
 		$endereco = DB::table('enderecos')
 			->where('user_id', $id)->first();
+
+		$evento = Inscricao::where('id',$id)->get();	
 		
 		if(is_null($endereco)){
 			Endereco::create([
@@ -32,7 +35,7 @@ class UserController extends Controller
 			->where('user_id', $id)->first();
 		}
 
-		return view('showuser')->with('user', $user)->with('endereco', $endereco);
+		return view('showuser')->with('user', $user)->with('endereco', $endereco)->with('evento',$evento);
 	}
 
 	public function edit($id, Request $request){
