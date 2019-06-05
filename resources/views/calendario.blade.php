@@ -74,6 +74,10 @@ Calendário de eventos
                 {!! Form::label('cidade','Bairro:') !!}
                 {!! Form::text('cidade', null, ['class' => 'form-control', 'placeholder' => 'Ex.: Recife']) !!}
             </div>
+            <div class="d-flex flex-column mb-4">
+                {!! Form::label('link','Link evento:') !!}
+                {!! Form::text('link', null, ['class' => 'form-control', 'placeholder' => 'Caso tenha um site']) !!}
+            </div>
             <div class="d-flex flex-fill">
                 <div class="d-flex mr-4">
                     {!! Form::select('user_id', $users, null, ['placeholder' => 'Escolher usuário', 'class' => 'form-control']) !!}

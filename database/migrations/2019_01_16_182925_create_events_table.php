@@ -13,11 +13,13 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table){
+
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+
             $table->text('apresentation')->nullable();
             $table->string('title');
             $table->datetime('start_date');
@@ -31,6 +33,8 @@ class CreateEventsTable extends Migration
             $table->string('local')->nullable();
             $table->string('cidade')->nullable();
             $table->string('rua')->nullable();
+            $table->string('link')->nullable();
+
             $table->timestamps();
         });
     }

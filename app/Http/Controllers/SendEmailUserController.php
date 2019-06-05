@@ -31,14 +31,9 @@ class SendEmailUserController extends Controller
 		$evento_name = $evento->title;
 		$user_name = $user->user->name;
 		$evento_data = $evento->start_date;
-		$evento_valor = $evento->valor;
-		$rua = $evento->rua;
-		$bairro = $evento->cidade;
-		$local = $evento->local;
-		// $organizador = $evento->user->name;
 		$id = $user->id;
 
-		$data = array('name'=>$user_name, 'title'=>$evento_name,'id'=>$id,'valor'=>$evento_valor,'local'=>$local,'bairro'=>$bairro,'rua'=>$rua,'user_id'=>$user_id,'evento_id'=>$evento_id,'data'=>$evento_data,'email'=>$to_email,"body" => "Certificado do evento");
+		$data = array('name'=>$user_name, 'title'=>$evento_name,'id'=>$id,'user_id'=>$user_id,'evento_id'=>$evento_id,'data'=>$evento_data,'email'=>$to_email,"body" => "Certificado do evento");
 
 		$user->update(['envio' => '1']);
 

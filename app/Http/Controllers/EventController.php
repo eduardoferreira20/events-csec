@@ -77,6 +77,7 @@ class EventController extends Controller
 		$event->cidade = $request->input('cidade');
 		$event->rua = $request->input('rua');
 		$event->hora_comple = $request->input('hora_comple');
+		$event->link = $request->input('link');
 		$event->save();
 
 		return Redirect::to(route('events.index'));
@@ -104,6 +105,7 @@ class EventController extends Controller
 			'local' => $event->local,
 			'cidade' => $event->cidade,
 			'rua' => $event->rua,
+			'link' => $event->link,
 			'start_time' => date('H:i', strtotime($event->start_date)),
 			'end_time' => date('H:i', strtotime($event->end_date)),
 		);
@@ -186,6 +188,7 @@ class EventController extends Controller
 				'local' => $check->local,
 				'cidade' => $check->cidade,
 				'rua' => $check->rua,
+				'link' => $check->link,
 				'valor' => $check->valor, 
 				'hora_comple' => $check->hora_comple,
 				'start_date' => date('Y-m-d', strtotime($check->start_date)),
@@ -263,6 +266,10 @@ class EventController extends Controller
 			DB::table('events')
 			->where('id', $id)
 			->update(['rua' => $request['rua']]);
+
+			DB::table('events')
+			->where('id', $id)
+			->update(['link' => $request['link']]);
 
 			DB::table('events')
 			->where('id', $id)
