@@ -18,6 +18,7 @@
       <a class="btn btn-link" href="{{ route('user.index', ['id' => $info->id]) }}">
         {{ $info->name }}
       </a>
+    </h4>
       <h6>Período:
         {{$data['start_date']}}  às  {{$data['start_time']}}
         @if($data['start_date'] != $data['end_date'])
@@ -31,6 +32,11 @@
         até {{$data['end_date']}} às {{$data['end_time']}}
         @endif
       </h6>
+      @if($data['link'] != null)
+      <h6>Para mais informações:<a target="_blank" href="{{$data['link']}}">  {{$data['title']}}</a></h6>
+      @else
+      <!-- não aparece nada -->
+      @endif
       @auth('admin-web')
       <div class="d-flex mt-4">
         {!! Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')) !!}
@@ -75,7 +81,25 @@
             </div>
           </div>
         </div>
-      </div>    
+        <div id="programacao" class="tab-pane fade">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex mb-3 flex-column">
+                a
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="folder" class="tab-pane fade">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex mb-3 flex-column">
+                a2
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
     </div>
   </div>
   <div class="d-flex flex-column">
@@ -165,6 +189,8 @@
             @auth('admin-web')
             @if($data['inicio_inscricoes'] == null)
             Datas não definidas!
+            <br>
+            <br>
             {!! Form::open(array('route' => ['events.inscricoes', $data['id']],'method'=>'POST')) !!}
             {!! Form::hidden('info', 'mostrar_edicao') !!}
             {!! Form::submit('Definir datas', ['class'=>'btn btn-danger']) !!}
@@ -285,9 +311,9 @@
                    @auth('admin-web')
                     <td>
                       @if($inscricaos->status == 0)
-                     <a class="btn btn-success" href="javascript:(confirm('Confirmar estatos da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
+                     <a class="btn btn-success" href="javascript:(confirm('Confirmar status da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
                      @else
-                      <a class="btn btn-warning" href="javascript:(confirm('Mudar estatos da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
+                      <a class="btn btn-warning" href="javascript:(confirm('Mudar status da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
                     @endif
                      <a class="btn btn-danger" href="javascript:(confirm('Deletar essa inscrição?') ? window.location.href='{{route('events.deletarIns', $inscricaos->id)}}' : false)">Deletar</a>
                    </td>

@@ -18,7 +18,7 @@ class UserController extends Controller
 		$endereco = DB::table('enderecos')
 			->where('user_id', $id)->first();
 
-		$evento = Inscricao::where('id',$id)->get();	
+		$evento = Inscricao::where('user_id',$id)->get();	
 		
 		if(is_null($endereco)){
 			Endereco::create([

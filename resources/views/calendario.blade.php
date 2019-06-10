@@ -71,11 +71,11 @@ Calendário de eventos
                 {!! Form::text('rua', null, ['class' => 'form-control','placeholder' => 'Ex.: AV. Pedro Allain,88 ']) !!}
             </div>
             <div class="d-flex flex-column mb-4">
-                {!! Form::label('cidade','Bairro:') !!}
+                {!! Form::label('cidade','Cidade:') !!}
                 {!! Form::text('cidade', null, ['class' => 'form-control', 'placeholder' => 'Ex.: Recife']) !!}
             </div>
             <div class="d-flex flex-column mb-4">
-                {!! Form::label('link','Link evento:') !!}
+                {!! Form::label('link','Link do evento:') !!}
                 {!! Form::text('link', null, ['class' => 'form-control', 'placeholder' => 'Caso tenha um site']) !!}
             </div>
             <div class="d-flex flex-fill">

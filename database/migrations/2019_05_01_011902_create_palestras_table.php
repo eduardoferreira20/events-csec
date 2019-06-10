@@ -17,7 +17,7 @@ class CreatePalestrasTable extends Migration
             $table->increments('id');
 
             $table->integer('event_id')->unsigned();
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
 
             $table->string('title');
             $table->text('apresentation');

@@ -49,6 +49,11 @@ Adicionar minicurso
     {!! Form::label('title','Nome do evento:') !!}
     {!! Form::text('title', $old['title'], ['class' => 'form-control']) !!}
   </div>
+    <div class="d-flex flex-column mb-4">
+    {!! Form::label('link','Link do evento:') !!}
+    {!! Form::text('link', $old['link'], ['class' => 'form-control','placeholder' => 'Caso o evento tenha um site']) !!}
+  </div>
+
   <div class="d-flex flex-column mb-4">
     {!! Form::label('local','Local do evento:') !!}
     {!! Form::text('local', $old['local'], ['class' => 'form-control']) !!}
