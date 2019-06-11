@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('documento');
             $table->string('phone')->nullable();
             $table->string('celular')->nullable();
+            $table->string('QRpassword')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

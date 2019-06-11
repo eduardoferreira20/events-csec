@@ -12,18 +12,18 @@
   html,body{
     font-family: 'Montserrat';
     font-size: 21px;
-    background:url('Certificado.jpg');
+    background:url('Certificado1.jpg');
     background-repeat: no-repeat;
     transform: rotate(270deg);
     transform-origin:47% 53%;  
-    height: 101%;
+    height: 102%;
     width: 1110px;
     position: fixed;
+    z-index: -100000000000;
   }
 
-
   .table{
-    padding-top: 6%;
+    padding-top: 4%;
     padding-left: 47%;
     width: 49%;
   }
@@ -79,6 +79,5 @@
         </div>
       </div>
      </div> 
-
   </body>
 </html>

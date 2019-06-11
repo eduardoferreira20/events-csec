@@ -33,7 +33,7 @@
         @endif
       </h6>
       @if($data['link'] != null)
-      <h6>Para mais informações:<a target="_blank" href="{{$data['link']}}">  {{$data['title']}}</a></h6>
+      <h6>Para mais informações:<a target="_blank" href="{{$data['link']}}">  {{$data['link']}}</a></h6>
       @else
       <!-- não aparece nada -->
       @endif
