@@ -33,6 +33,17 @@ and
 
 cd events-csec
 $ composer require Diegomoura/laravel-boleto
+
+and 
+
+cd events-csec
+compositor requer barryvdh / laravel-dompdf
+
+and
+
+cd events-csec
+composer require simplesoftwareio/simple-qrcode
+
 ```
 
 
