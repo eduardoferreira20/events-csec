@@ -178,7 +178,19 @@ return [
         App\Providers\BroadcastServiceProvider::class,//comentar
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class 
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+        /**
+         * 
+         */
+        class ClassName extends AnotherClass
+        {
+            
+            function __construct(argument)
+            {
+                # code...
+            }
+        }
 
     ],
 
@@ -235,6 +247,9 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Sentinel'  => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
+        'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
+        'Reminder' => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
 
     ],
 

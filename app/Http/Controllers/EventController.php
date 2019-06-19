@@ -134,6 +134,8 @@ class EventController extends Controller
 	public function aprovar($id){
 
 		$aprovar = Inscricao::find($id);
+		$evento = $aprovar->event_id;
+		$user = $aprovar->user_id;
 
 		if ($aprovar->status == '1'){
 
@@ -147,7 +149,7 @@ class EventController extends Controller
 
 			$aprovar->update(['status' => '1']);
 
-			return back();
+			return Redirect::to(route('send.qr',compact('evento','user')));
 		}
 	}
 	public function presenca($id){

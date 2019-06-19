@@ -29,7 +29,11 @@ Route::post('users/{id}', 'UserController@edit')->name('user.edit');
 
 Route::get('certificado/download/{id}/usuario/{user_id}', 'ParticipanteController@pdfexport')->name('evento.pdf');
 
-Route::get('send/user/{id}/evento/{user_id}', 'SendEmailUserController@send')->name('send.email');
+Route::get('send/certificado/{id}/evento/{user_id}/presenca', 'SendEmailUserController@send')->name('send.email');
+Route::get('send/user/{id}/evento/{user_id}', 'SendEmailUserController@QR')->name('send.qr');
+
+Route::get('qrcode/{id}/{user_id}','QRController@qrcode')->name('qr');
+
 
 Auth::routes();
 

@@ -314,7 +314,7 @@
                      <a class="btn btn-success" href="javascript:(confirm('Confirmar status da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
                      @else
                       <a class="btn btn-warning" href="javascript:(confirm('Mudar status da inscrição de {{$inscricaos->user->name}}?') ? window.location.href='{{route('events.aprovar', $inscricaos->id)}}' : false)">Status</a>
-                    @endif
+                     @endif
                      <a class="btn btn-danger" href="javascript:(confirm('Deletar essa inscrição?') ? window.location.href='{{route('events.deletarIns', $inscricaos->id)}}' : false)">Deletar</a>
                    </td>
                    @endauth
@@ -404,7 +404,7 @@
                       @endif
                       <td>
                       <a target="_blank" href="{{(url('/certificado/download/'.$certificado->evento->id.'/usuario/'.$certificado->user->id) )}}" class="btn btn-success" >Abrir</a>
-                      <a href="{{url('/send/user/'.$certificado->evento->id.'/evento/'.$certificado->user->id)}}" class="btn btn-info">Enviar</a>
+                      <a href="{{url('/send/certificado/'.$certificado->evento->id.'/evento/'.$certificado->user->id).'/presenca'}}" class="btn btn-info">Enviar</a>
                     </td>
                     @endif
                     </tr>

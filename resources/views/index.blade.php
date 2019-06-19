@@ -234,7 +234,9 @@ body {
 	</tbody>
 </table>
 </div> -->
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<br>
+<br>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style=" overflow: scroll !important;">
 	<div class="carousel-inner">
 		<div class="carousel-item active">
 			<div class="container">
@@ -283,7 +285,7 @@ body {
 									<p class="desc">Hora: {{date('H:m', strtotime($titulo->start_date))}}</p>
 									<p></p>
 								</div>
-								<div class="social" style="margin-right: 10% !important;">
+								<div class="social" style="margin-right: 10% !important; margin-top: 4.5% !important;">
 									<tbody>
 										<tr>
 											<td>

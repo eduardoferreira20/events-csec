@@ -17,6 +17,19 @@
       0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     ),
   ),
+  'cartalyst/sentinel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Activation' => 'Cartalyst\\Sentinel\\Laravel\\Facades\\Activation',
+      'Reminder' => 'Cartalyst\\Sentinel\\Laravel\\Facades\\Reminder',
+      'Sentinel' => 'Cartalyst\\Sentinel\\Laravel\\Facades\\Sentinel',
+    ),
+  ),
   'fideloper/proxy' => 
   array (
     'providers' => 
