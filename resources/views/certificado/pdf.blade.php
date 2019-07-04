@@ -19,6 +19,8 @@
     height: 102%;
     width: 1110px;
     position: fixed;
+    background-position: 70% 3%;
+    background-size: 111800px !important;
     z-index: -100000000000;
   }
 

@@ -124,6 +124,10 @@ class EventController extends Controller
 
 		$certificado=Inscricao::where('event_id',$id)->get();
 
+		// $usuario = Auth::user()->id;
+
+		// $organizador = $event->id;
+
 		$hora = Carbon::now();	
 
 		return view('showevent',compact('hora'))->with('data', $event)->with('info', $user)->with('palestrantes', $nome_palestrantes)->with('palestras', $palestras)->with('oficinas',$oficinas)->with('inscricaos', $inscricaos)->with('presenca',$presenca)->with('certificado',$certificado);

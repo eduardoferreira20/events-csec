@@ -20,7 +20,6 @@ class AddDummyUser extends Seeder
             'nacionalidade' => 'Brasileiro',
             'tipo' => '1',
             'documento' => '70555713407',
-            'QRpassword'=>'Dammy-CODE-1S4u7lJzehk62xDm3DgYgXXYWtbHE6gSP'
         ]);
 
         DB::table('users')->insert([
@@ -31,7 +30,6 @@ class AddDummyUser extends Seeder
             'nacionalidade' => 'Brasileiro',
             'tipo' => '1',
             'documento' => '57418644953',
-            'QRpassword'=>'Dammy-122-1S4u7lJzehk62xDm3DgYgXXYWtbHE6gSP'
         ]);
 
     }

@@ -373,7 +373,7 @@
         Certificados:
       </h2>
     </div>
-    <div class="d-flex flex-column text-justify">
+    <div class="d-flex flex-column text-justify" id="tabela">
       <div class="tab-content">
         <div id="confirmacao" class="tab-pane fade in active">
           <div class="card">
@@ -398,9 +398,9 @@
                       <td class="nome">{{$certificado->user->name}}</td>
                       <td class="nome">{{$certificado->user->email}}</td>
                       @if($certificado->envio == 0)
-                      <td class="nome"><strong>Não enviado</strong></td>
+                      <td class="nome" id="nome"><strong>Não enviado</strong></td>
                       @else
-                      <td class="nome"><strong>Enviado</strong></td>
+                      <td class="nome" id="nome"><strong>Enviado</strong></td>
                       @endif
                       <td>
                       <a target="_blank" href="{{(url('/certificado/download/'.$certificado->evento->id.'/usuario/'.$certificado->user->id) )}}" class="btn btn-success" >Abrir</a>
@@ -437,6 +437,14 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var tempo = window.setInterval(carrega, 1000);
+function carrega()
+{
+$('#tabela').load("showevent.blade.php");
+}
+</script>
+<!-- Pagina organizador evento -->
 
 @endsection
 
