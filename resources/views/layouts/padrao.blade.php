@@ -72,6 +72,11 @@
 						<li>
 							<a href="http://csec.poli.br/">Voltar para o site do CSEC</a>
 						</li>
+						@auth('admin-web')
+						<li>
+							<a href="{{ route('pay')}}">Pagamentos</a>
+						</li>
+						@endauth
 					</ul>		
 				</nav>
 			</div>			

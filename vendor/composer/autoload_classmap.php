@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\InscricaoController' => $baseDir . '/app/Http/Controllers/InscricaoController.php',
     'App\\Http\\Controllers\\ParticipanteController' => $baseDir . '/app/Http/Controllers/ParticipanteController.php',
+    'App\\Http\\Controllers\\QRController' => $baseDir . '/app/Http/Controllers/QRController.php',
     'App\\Http\\Controllers\\SendEmailUserController' => $baseDir . '/app/Http/Controllers/SendEmailUserController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

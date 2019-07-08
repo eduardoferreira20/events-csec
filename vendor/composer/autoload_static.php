@@ -94,6 +94,7 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'Prophecy\\' => 9,
             'PhpParser\\' => 10,
         ),
         'O' => 
@@ -314,6 +315,10 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Prophecy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -486,10 +491,6 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
         ),
         'P' => 
         array (
-            'Prophecy\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
-            ),
             'Parsedown' => 
             array (
                 0 => __DIR__ . '/..' . '/erusev/parsedown',
@@ -538,6 +539,7 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\InscricaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/InscricaoController.php',
         'App\\Http\\Controllers\\ParticipanteController' => __DIR__ . '/../..' . '/app/Http/Controllers/ParticipanteController.php',
+        'App\\Http\\Controllers\\QRController' => __DIR__ . '/../..' . '/app/Http/Controllers/QRController.php',
         'App\\Http\\Controllers\\SendEmailUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/SendEmailUserController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

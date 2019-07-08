@@ -22,6 +22,9 @@ Route::get('eventos/presenca/{id}', 'EventController@presenca')->name('events.pr
 Route::get('eventos/deletarinscricao/{id}', 'EventController@deletarInscricao')->name('events.deletarIns');
 Route::get('eventos/deletar/{id}', 'EventController@deletar')->name('events.deletar');
 
+Route::get('pagamento','InscricaoController@pagamento')->name('pay');
+Route::get('pagamento/{id}','InscricaoController@lista')->name('lista.pay');
+
 Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('events.inscricoes');
 
 Route::get('users/{id}', 'UserController@index')->name('user.index');

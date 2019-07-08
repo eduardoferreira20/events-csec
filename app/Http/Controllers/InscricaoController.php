@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Filesystem\Filesystem;
 use App\Inscricao;
+use App\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Event;
 use DB;
 
 class InscricaoController extends Controller
@@ -34,11 +38,12 @@ class InscricaoController extends Controller
 			return Redirect::to(route('events.show', ['id' => $id]));
 
 		}elseif($request['info'] == 'inscrever'){
-
 			$comprovante = $request->file('comprovante');
 			$extensao = $request->comprovante->getClientOriginalExtension();
-			$path = url('storage/'.$comprovante->storeAs('comprovantes', $request['user_id'].'.' .$extensao));
-			
+			$name = time(). ".".$extensao;
+			$path = url('storage/'.$comprovante->storeAs('comprovantes', $request['user_id']));
+
+
 			if (empty($comprovante)) {
 				abort(400, 'Nenhum arquivo foi enviado.');
 			}
@@ -56,6 +61,16 @@ class InscricaoController extends Controller
 
 			return Redirect::to(route('events.show', ['id' => $id]));
 		}
+	}
+
+	public function pagamento(){
+		$pagar = DB::table('events')->get();
+		return view('pagamento',compact('pagar'));
+	}
+
+	public function lista($id){
+		$boletos = DB::table('inscricaos')->where('event_id',$id)->get();
+		return view('lista',compact('boletos'));
 	}
 
 	public function deletar(){
