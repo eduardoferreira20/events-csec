@@ -56,7 +56,7 @@ return [
             'engine' => null,
         ],
 
-        'pgsql_production' => [
+        'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '5432'),
