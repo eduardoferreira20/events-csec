@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="<?php echo e(asset('css/lib/bootstrap.min.css')); ?>">
 		<link rel='stylesheet' id='smartline-lite-stylesheet-css'  href="<?php echo e(asset('css/smartline/style.css')); ?>"/>
 		<link rel='stylesheet' id='smartline-lite-default-fonts-css'  href='//fonts.googleapis.com/css?family=Raleway%3A400%2C700%7CBitter&#038;subset=latin%2Clatin-ext' type='text/css' media='all'/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 		<style type="text/css">
 			@media  only screen and (min-width: 60em) {
 				#content {
@@ -70,6 +72,11 @@
 						<li>
 							<a href="http://csec.poli.br/">Voltar para o site do CSEC</a>
 						</li>
+						<?php if(auth()->guard('admin-web')->check()): ?>
+						<li>
+							<a href="<?php echo e(route('pay')); ?>">Pagamentos</a>
+						</li>
+						<?php endif; ?>
 					</ul>		
 				</nav>
 			</div>			
@@ -198,6 +205,9 @@
 
 	<script src="<?php echo e(asset('js/lib/jquery-3.3.1.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/lib/bootstrap.min.js')); ?>"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 	<?php echo $__env->yieldContent('script'); ?>
 
 </html>	

@@ -43,6 +43,8 @@
     39 => 'App\\Providers\\BroadcastServiceProvider',
     40 => 'App\\Providers\\EventServiceProvider',
     41 => 'App\\Providers\\RouteServiceProvider',
+    42 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
+    43 => 'Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider',
   ),
   'eager' => 
   array (
@@ -71,6 +73,7 @@
     22 => 'App\\Providers\\BroadcastServiceProvider',
     23 => 'App\\Providers\\EventServiceProvider',
     24 => 'App\\Providers\\RouteServiceProvider',
+    25 => 'Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider',
   ),
   'deferred' => 
   array (
