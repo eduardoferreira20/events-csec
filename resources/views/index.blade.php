@@ -153,7 +153,7 @@ body {
 	}
 	.event-list > li > .info {
 		background-color: rgb(245, 245, 245);
-		overflow: hidden;
+		overflow: auto;
 	}
 	.event-list > li > time,
 	.event-list > li > img {
@@ -236,12 +236,13 @@ body {
 </div> -->
 <br>
 <br>
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style=" overflow: scroll !important;">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style=" overflow: auto !important;">
 	<div class="carousel-inner">
 		<div class="carousel-item active">
 			<div class="container">
 				<div class="row">
 					@foreach($events as $titulo)
+					@if(date('d-m', strtotime($titulo->end_date)) > date('d-m',strtotime($hora)))
 					<div class="col-xs-12 col-sm-offset-2 col-sm-8" style="margin-left: 50px !important;">
 						<ul class="event-list" style="">
 							<li>
@@ -300,6 +301,8 @@ body {
 							</li>
 						</ul>
 					</div>
+					@else
+  					@endif
 					@endforeach
 				</div>
 			</div>

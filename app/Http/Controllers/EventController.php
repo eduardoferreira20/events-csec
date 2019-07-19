@@ -556,7 +556,8 @@ class EventController extends Controller
 
 	public function index(){
 		$event= Event::all();
-		return view('index',['events'=>$event]);
+		$hora = Carbon::now();
+		return view('index',['events'=>$event],['hora'=>$hora]);
 
 	}
 }
