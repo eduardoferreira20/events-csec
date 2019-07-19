@@ -41,7 +41,7 @@ class SendEmailUserController extends Controller
 		Mail::send('mail',$data, function($message) use ($to_name, $to_email,$evento_name) {
 			$message->to($to_email, $to_name)
 			->subject($evento_name);
-			$message->from('animedudu12345@gmail.com','CSEC');
+			$message->from('dex@poli.br','CSEC');
 		});
 
 
@@ -69,7 +69,7 @@ class SendEmailUserController extends Controller
 		Mail::send('mailQR',$data, function($message) use ($to_name, $to_email,$evento_name) {
 			$message->to($to_email, $to_name)
 			->subject($evento_name);
-			$message->from('animedudu12345@gmail.com','CSEC');
+			$message->from('dex@poli.br','CSEC');
 		});
 		return back();
 	}
