@@ -70,26 +70,38 @@ Calendário de eventos
                 <div class="d-flex flex-column mr-4">
                     <?php echo Form::label('valor','Valor do evento:'); ?>
 
-                <?php echo Form::text('valor', null, ['class' => 'form-control']); ?>
+                <?php echo Form::text('valor', null, ['class' => 'form-control','placeholder' => 'Ex.: 20,00']); ?>
 
                 </div>
             </div>
             <div class="d-flex flex-column mb-4">
                 <?php echo Form::label('hora_comple','Horas complementares:'); ?>
 
-                <?php echo Form::text('hora_comple', null, ['class' => 'form-control']); ?>
+                <?php echo Form::text('hora_comple', null, ['class' => 'form-control', 'placeholder' => 'Ex.: 8 (oito)']); ?>
 
             </div>
             <div class="d-flex flex-column mb-4">
                 <?php echo Form::label('local','Local do evento:'); ?>
 
-                <?php echo Form::text('local', null, ['class' => 'form-control']); ?>
+                <?php echo Form::text('local', null, ['class' => 'form-control','placeholder' => 'Ex.: POLI(Escola Politecnica de Pernambuco)']); ?>
+
+            </div>
+            <div class="d-flex flex-column mb-4">
+                <?php echo Form::label('rua','Rua do evento:'); ?>
+
+                <?php echo Form::text('rua', null, ['class' => 'form-control','placeholder' => 'Ex.: AV. Pedro Allain,88 ']); ?>
 
             </div>
             <div class="d-flex flex-column mb-4">
                 <?php echo Form::label('cidade','Cidade:'); ?>
 
-                <?php echo Form::text('cidade', null, ['class' => 'form-control']); ?>
+                <?php echo Form::text('cidade', null, ['class' => 'form-control', 'placeholder' => 'Ex.: Recife']); ?>
+
+            </div>
+            <div class="d-flex flex-column mb-4">
+                <?php echo Form::label('link','Link do evento:'); ?>
+
+                <?php echo Form::text('link', null, ['class' => 'form-control', 'placeholder' => 'Caso tenha um site']); ?>
 
             </div>
             <div class="d-flex flex-fill">

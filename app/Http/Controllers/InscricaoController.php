@@ -41,7 +41,7 @@ class InscricaoController extends Controller
 			$comprovante = $request->file('comprovante');
 			$extensao = $request->comprovante->getClientOriginalExtension();
 			$name = time(). ".".$extensao;
-			$path = url('storage/'.$comprovante->storeAs('comprovantes', $request['user_id']));
+			$path = url('storage/'.$comprovante->storeAs('comprovantes', $request['user_id'].'.'.$extensao));
 
 
 			if (empty($comprovante)) {
