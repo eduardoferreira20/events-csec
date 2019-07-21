@@ -12,7 +12,7 @@
   html,body{
     font-family: 'Montserrat';
     font-size: 21px;
-    background:url('Certificado1.jpg');
+    background-image: url('Certificado1.jpg');
     background-repeat: no-repeat;
     transform: rotate(270deg);
     transform-origin:47% 53%;  

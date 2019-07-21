@@ -300,7 +300,7 @@ body {
 						</ul>
 					</div>
 					<?php else: ?>
-					<?php endif; ?>
+  					<?php endif; ?>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				</div>
 			</div>
