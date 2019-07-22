@@ -9,10 +9,10 @@
     
     <style type="text/css">
 
-  html,body{
+  body{
     font-family: 'Montserrat';
     font-size: 21px;
-    background-image: url('Certificado1.jpg');
+    background: url("/Certificado1.jpg");
     background-repeat: no-repeat;
     transform: rotate(270deg);
     transform-origin:47% 53%;  
