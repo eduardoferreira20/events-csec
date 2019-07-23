@@ -90,7 +90,7 @@
     </table>
     <br />
     <br />
-    <table cellspacing=0 cellpadding=0 border=0>
+    <table cellspacing=0 cellpadding=0 border=1,5>
         <tr>
             <td width=140 class=cp><img src="<?= msbimgurl() ?>/logo<?= $logo_banco ?>.jpg"  width="150" style="width: 150px; max-width: 100%;" /></td>
             <td width=3 valign=bottom><img height=22 src=<?= msbimgurl() ?>/3.png width=2></td>
@@ -108,7 +108,7 @@
         </tr>
         <tr><td colspan=5><img height=1 src=<?= msbimgurl() ?>/2.png width=666></td></tr>
     </table>
-    <table cellspacing=0 cellpadding=0 border=0>
+    <table cellspacing=0 cellpadding=0 border=1>
         <tr>
             <td width=7 height=1><img src=<?= msbimgurl() ?>/1.png width=7 height=1></td>
             <td width=112><img src=<?= msbimgurl() ?>/1.png width=112 height=1></td>
@@ -208,7 +208,7 @@
         </tr>
         <tr><td colspan=12 height=1><img src=<?= msbimgurl() ?>/2.png width=666 height=1></td></tr>
     </table>
-    <table cellspacing=0 cellpadding=0 border=0>
+    <table cellspacing=0 cellpadding=0 border=1,5>
         <tr>
             <td width=7 height=12 class=ct>&nbsp;</td>
             <td width=558 class=ct>Demonstrativo</td>
