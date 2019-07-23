@@ -109,6 +109,7 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Miqueiasdesouza\\Boleto\\' => 23,
         ),
         'L' => 
         array (
@@ -340,6 +341,10 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Miqueiasdesouza\\Boleto\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/miqueiasdesouza/boleto/src',
+        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -546,6 +551,7 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\AuthenticatorController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthenticatorController.php',
+        'App\\Http\\Controllers\\BoletoController' => __DIR__ . '/../..' . '/app/Http/Controllers/BoletoController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EventController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
@@ -2528,6 +2534,12 @@ class ComposerStaticInite47cabb0f9fe1b056ae0fdf9d9f21556
         'MaddHatter\\LaravelFullcalendar\\IdentifiableEvent' => __DIR__ . '/..' . '/maddhatter/laravel-fullcalendar/src/MaddHatter/LaravelFullcalendar/IdentifiableEvent.php',
         'MaddHatter\\LaravelFullcalendar\\ServiceProvider' => __DIR__ . '/..' . '/maddhatter/laravel-fullcalendar/src/MaddHatter/LaravelFullcalendar/ServiceProvider.php',
         'MaddHatter\\LaravelFullcalendar\\SimpleEvent' => __DIR__ . '/..' . '/maddhatter/laravel-fullcalendar/src/MaddHatter/LaravelFullcalendar/SimpleEvent.php',
+        'Miqueiasdesouza\\Boleto\\Boleto' => __DIR__ . '/..' . '/miqueiasdesouza/boleto/src/Boleto.php',
+        'Miqueiasdesouza\\Boleto\\Boletos\\Core\\CoreBoletos' => __DIR__ . '/..' . '/miqueiasdesouza/boleto/src/Boletos/Core/CoreBoletos.php',
+        'Miqueiasdesouza\\Boleto\\Laravel\\v4\\BoletoFacade' => __DIR__ . '/..' . '/miqueiasdesouza/boleto/src/Laravel/v4/BoletoFacade.php',
+        'Miqueiasdesouza\\Boleto\\Laravel\\v4\\BoletoServiceProvider' => __DIR__ . '/..' . '/miqueiasdesouza/boleto/src/Laravel/v4/BoletoServiceProvider.php',
+        'Miqueiasdesouza\\Boleto\\Laravel\\v5\\BoletoFacade' => __DIR__ . '/..' . '/miqueiasdesouza/boleto/src/Laravel/v5/BoletoFacade.php',
+        'Miqueiasdesouza\\Boleto\\Laravel\\v5\\BoletoServiceProvider' => __DIR__ . '/..' . '/miqueiasdesouza/boleto/src/Laravel/v5/BoletoServiceProvider.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',

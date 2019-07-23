@@ -1,0 +1,21 @@
+{
+  "name": "miqueiasdesouza/boleto",
+  "description": "Pacote para a geração de boletos e integração com Laravel 4.2 e 5.1. Esse pacote visa disponibilizar um conjunto de classes que trabalha com o BoletoPHP (http://boletophp.com.br) para ser utilizado com ou sem a necessidade de framework. Utilizei os arquivos do BoletoPHP (http://boletophp.com.br) porém fiz algumas modificações para conseguir a re-utilização do código em classes já que o projeto original é feito em PHP Estruturado. Estou disponibilizando o código para comunidade como uma forma de agradecimento pelas informações já adquiridas. Estou utilizando também as classes HTML2PDF para geração dos boleto em PDF.",
+  "authors": [
+    {
+      "name": "Miquéias de Souza",
+      "email": "miqueiasdesouza@live.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Miqueiasdesouza\\Boleto\\": "src"
+    }
+  },
+  "config": {
+    "vendor-dir": "src/vendor"
+  }
+}

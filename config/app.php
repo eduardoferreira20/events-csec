@@ -180,6 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+        Miqueiasdesouza\Boleto\Laravel\v5\BoletoServiceProvider::class,
         /**
          * 
          */
@@ -241,6 +242,7 @@ return [
         'Sentinel'  => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
         'Reminder' => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
+        'Boleto'    => Miqueiasdesouza\Boleto\Laravel\v5\BoletoFacade::class,
 
     ],
 

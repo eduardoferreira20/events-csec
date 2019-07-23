@@ -129,49 +129,23 @@
           </div>
         </div>
         <div id="collapse{{$palestrante->id}}" class="collapse" aria-labelledby="heading{{$palestrante->id}}" data-parent="#accordion">
-          <div class="card-body">
-            @if($palestrante->apresentacao != null)
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-3 text-center">
-                  <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="{{$palestrante->nome}}"
-                  class="img-fluid z-depth-1-half rounded-circle"> -->
-                  <div style="height: 10px"></div>
-                  <p class="title mb-0">{{$palestrante->nome}}</p>
-                  <p class="text-muted " style="font-size: 13px">{{$palestrante->cargo}}</p>
+            <div class="card-body">
+              @if($palestrante->apresentacao != null)
+                {!! $palestrante->apresentacao !!}
+              @else
+                <div class="text-muted">
+                  Nada para informar.
                 </div>
-                <div class="col-9">
-                  <p>{!! $palestrante->apresentacao !!}</p>
-                </div>
-              </div>
+              @endif 
             </div>
-            @else
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-3 text-center">
-                  <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="IMG of Avatars"
-                  class="img-fluid z-depth-1-half rounded-circle"> -->
-                  <div style="height: 10px"></div>
-                  <p class="title mb-0">{{$palestrante->nome}}</p>
-                  <p class="text-muted " style="font-size: 13px">{{$palestrante->cargo}}</p>
-                </div>
-                <div class="col-9">
-                  <p></p>
-                </div>
-              </div>
-            </div>
-            @endif 
           </div>
-        </div>
         @endforeach
-        @auth('admin-web')
         <div class="card-header">
           {!! Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')) !!}
           {!! Form::hidden('info', 'add_palestrante') !!}
           {!! Form::submit('+ Adicionar palestrante', ['class'=>'btn btn-link']) !!}
           {!! Form::close() !!}
         </div>
-        @endauth
       </div>
     </div>
   </div>

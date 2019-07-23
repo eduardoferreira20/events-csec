@@ -240,7 +240,7 @@ body {
 			<div class="container">
 				<div class="row">
 					<?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $titulo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-					<?php if(date('d-m', strtotime($titulo->end_date)) > date('d-m',strtotime($hora))): ?>
+					<?php if(date('d-m', strtotime($titulo->end_date)) >= date('d-m',strtotime($hora))): ?>
 					<div class="col-xs-12 col-sm-offset-2 col-sm-8" style="margin-left: 50px !important;">
 						<ul class="event-list" style="">
 							<li>

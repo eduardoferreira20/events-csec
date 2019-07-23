@@ -4,68 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Eduardokum;
+use Miqueiasdesouza\Boleto\Laravel\v5\BoletoFacade;
+use Miqueiasdesouza;
+use Miqueiasdesouza\Boleto\Boleto;
+use Illuminate\Support\Facades\Auth;
 
 class BoletoController extends Controller
 {
 	public function boleto(){
-    $beneficiario = new \Eduardokum\LaravelBoleto\Pessoa(
-    [
-        'nome'      => 'ACME',
-        'endereco'  => 'Rua um, 123',
-        'cep'       => '99999-999',
-        'uf'        => 'UF',
-        'cidade'    => 'CIDADE',
-        'documento' => '99.999.999/9999-99',
-    ]
-);
 
-$pagador = new \Eduardokum\LaravelBoleto\Pessoa(
-    [
-        'nome'      => 'Cliente',
-        'endereco'  => 'Rua um, 123',
-        'bairro'    => 'Bairro',
-        'cep'       => '99999-999',
-        'uf'        => 'UF',
-        'cidade'    => 'CIDADE',
-        'documento' => '999.999.999-99',
-    ]
-);
 
-$boleto = new \Eduardokum\LaravelBoleto\Boleto\Banco\Bb(
-    [
-        'logo'                   => realpath(__DIR__ . '/../logos/') . DIRECTORY_SEPARATOR . '001.png',
-        'dataVencimento'         => new \Carbon\Carbon(),
-        'valor'                  => 100,
-        'multa'                  => false,
-        'juros'                  => false,
-        'numero'                 => 1,
-        'numeroDocumento'        => 1,
-        'pagador'                => $pagador,
-        'beneficiario'           => $beneficiario,
-        'carteira'               => 11,
-        'convenio'               => 1234567,
-        'descricaoDemonstrativo' => ['demonstrativo 1', 'demonstrativo 2', 'demonstrativo 3'],
-        'instrucoes'             => ['instrucao 1', 'instrucao 2', 'instrucao 3'],
-        'aceite'                 => 'S',
-        'especieDoc'             => 'DM',
-    ]
-);
+		$boleto = new Boleto;
 
-$remessa = new \Eduardokum\LaravelBoleto\Cnab\Remessa\Cnab400\Banco\Bb(
-    [
-        'agencia'      => 1111,
-        'carteira'     => 11,
-        'conta'        => 999999999,
-        'convenio'     => 1234567,
-        'beneficiario' => $beneficiario,
-    ]
-);
-// $remessa->addBoleto($boleto);
+    $boleto->sacado(array(
+            'sacado'    => "Nome do seu Cliente",
+            'endereco1' => "Endereço do seu Cliente",
+            'endereco2' => "Cidade - Estado -  CEP: 00000-000"
+        ));
 
-// echo $remessa->save(__DIR__ . DIRECTORY_SEPARATOR . 'arquivos' . DIRECTORY_SEPARATOR . 'bb.txt');
+ $boleto->cedente(array(
+            'agencia'           => "1100", // Num da agencia, sem digito
+            'agencia_dv'        => "0", // Digito do Num da agencia
+            'conta'             => "0102003",     // Num da conta, sem digito
+            'conta_dv'          => "4",
+            'conta_cedente'     => "0102003", // ContaCedente do Cliente, sem digito (Somente Números)
+            'conta_cedente_dv'  => "4", // Digito da ContaCedente do Cliente
+            'carteira'          => "06",  // Código da Carteira: pode ser 06 ou 03
+            'identificacao'     => "BoletoPhp - Código Aberto de Sistema de Boletos",
+            'cpf_cnpj'          => "",
+            'endereco'          => "Coloque o endereço da sua empresa aqui",
+            'cidade_uf'         => "Cidade / Estado",
+            'cedente'           => "Coloque a Razão Social da sua empresa aqui",
+            'contrato'          =>  "12345678900"
+        ));
 
-$boleto->renderHTML();
+        $boleto->banco('bradesco', array(
+            'valor_boleto'          => '289,90', // Nosso numero sem o DV - REGRA: Máximo de 11 caracteres!
+            'nosso_numero'          => '789', //Num do pedido ou do documento = Nosso numero
+            'numero_documento'      =>  '789', //// Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
+            'data_vencimento'       =>  date('d/m/Y'), //Data de emissão do Boleto
+            'data_documento'        =>  date('d/m/Y'), //Data de processamento do boleto (opcional)
+            'valor_unitario'        =>  '289,90',
+            'demonstrativo1'        =>  "Pagamento de Compra na Loja Nonononono",
+            'demonstrativo2'        =>  "Mensalidade referente a ...",
+            'demonstrativo3'        =>  "Empresa- http://www.seusite.com.br",
+            'instrucoes1'           =>  "- Sr. Caixa, cobrar multa de 2% após o vencimento",
+            'instrucoes2'           =>  "- Receber atá 10 dias após o vencimento",
+            'instrucoes3'           =>  "- Em caso de dúvidas entre em contato conosco: contato@seusite.com.br",
+
+        ));
+
+//PARA GERAR O BOLETO EM PDF
+// $boleto->pdf();
+
+//PARA GERAR O BOLETO EM HTML
+$boleto->html();
 }
 
 }
