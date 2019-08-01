@@ -108,6 +108,22 @@ return [
     // setting it to false show `error-file-exist` error and stop upload
     'over_write_on_duplicate'  => false,
 
+     /*
+    |--------------------------------------------------------------------------
+    | Working Directory
+    |--------------------------------------------------------------------------
+    */
+
+    // Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on.
+    // You should create routes to serve images if it is not set to public.
+    'base_directory' => 'public',
+
+    'images_folder_name' => 'photos',
+    'files_folder_name'  => 'files',
+
+    'shared_folder_name' => 'shares',
+    'thumb_folder_name'  => 'thumbs',
+
     /*
     |--------------------------------------------------------------------------
     | Thumbnail

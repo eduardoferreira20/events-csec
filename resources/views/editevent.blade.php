@@ -11,6 +11,10 @@
 @section('titulo-principal')
 @if($field == "apresentation")
 Editar descrição
+@elseif($field == "programacao")
+Editar Programação
+@elseif($field == "folder")
+Editar Folder
 @elseif($field == "general")
 Editar informações
 @elseif($field == "palestrantes")
@@ -38,6 +42,32 @@ Adicionar minicurso
       Voltar
     </a>
     {!! Form::hidden('info', 'editar_apresentacao') !!}
+    {!! Form::submit('Salvar', ['class'=>'btn btn-primary']) !!}
+  </div>
+  {!! Form::close() !!}
+</div>
+@elseif($field == "programacao")
+<div class="d-flex my-4">
+  {!! Form::open(array('route' => ['events.edit', $id],'method'=>'POST')) !!}
+  {!! Form::textarea('input', $old->programacao, ['id' => 'editor']) !!}
+  <div class="mt-4">
+    <a href="{{ route('events.show', ['id' => $id]) }}" class="btn btn-primary mr-3">
+      Voltar
+    </a>
+    {!! Form::hidden('info', 'editar_programacao') !!}
+    {!! Form::submit('Salvar', ['class'=>'btn btn-primary']) !!}
+  </div>
+  {!! Form::close() !!}
+</div>
+@elseif($field == "folder")
+<div class="d-flex my-4">
+  {!! Form::open(array('route' => ['events.edit', $id],'method'=>'POST')) !!}
+  {!! Form::textarea('input', $old->folder, ['id' => 'editor']) !!}
+  <div class="mt-4">
+    <a href="{{ route('events.show', ['id' => $id]) }}" class="btn btn-primary mr-3">
+      Voltar
+    </a>
+    {!! Form::hidden('info', 'editar_folder') !!}
     {!! Form::submit('Salvar', ['class'=>'btn btn-primary']) !!}
   </div>
   {!! Form::close() !!}

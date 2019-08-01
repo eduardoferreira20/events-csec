@@ -94,6 +94,8 @@ class EventController extends Controller
 			'id'	=> $event->id,
 			'title' => $event->title,
 			'apresentation' => $event->apresentation,
+			'programacao' => $event->programacao,
+			'folder' => $event->folder,
 			'inicio_inscricoes' => $event->inicio_inscricoes,
 			'fim_inscricoes' => $event->fim_inscricoes,
 			'start_date' => date('d-m', strtotime($event->start_date)),
@@ -248,6 +250,18 @@ class EventController extends Controller
 			->update(['apresentation' => $request['input']]);
 
 			return Redirect::to(route('events.show', ['id' => $id]));
+			}elseif($request['info'] == 'editar_folder'){
+			DB::table('events')
+			->where('id', $id)
+			->update(['folder' => $request['input']]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));
+		}elseif($request['info'] == 'editar_programacao'){
+			DB::table('events')
+			->where('id', $id)
+			->update(['programacao' => $request['input']]);
+
+			return Redirect::to(route('events.show', ['id' => $id]));	
 		}elseif($request['info'] == 'editar_informacoes'){
 			$sd = $request['start_date'];
 			$st = $request['start_time'];

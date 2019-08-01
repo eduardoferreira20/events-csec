@@ -9,6 +9,10 @@
 <?php $__env->startSection('titulo-principal'); ?>
 <?php if($field == "apresentation"): ?>
 Editar descrição
+<?php elseif($field == "programacao"): ?>
+Editar Programação
+<?php elseif($field == "folder"): ?>
+Editar Folder
 <?php elseif($field == "general"): ?>
 Editar informações
 <?php elseif($field == "palestrantes"): ?>
@@ -38,6 +42,42 @@ Adicionar minicurso
       Voltar
     </a>
     <?php echo Form::hidden('info', 'editar_apresentacao'); ?>
+
+    <?php echo Form::submit('Salvar', ['class'=>'btn btn-primary']); ?>
+
+  </div>
+  <?php echo Form::close(); ?>
+
+</div>
+<?php elseif($field == "programacao"): ?>
+<div class="d-flex my-4">
+  <?php echo Form::open(array('route' => ['events.edit', $id],'method'=>'POST')); ?>
+
+  <?php echo Form::textarea('input', $old->programacao, ['id' => 'editor']); ?>
+
+  <div class="mt-4">
+    <a href="<?php echo e(route('events.show', ['id' => $id])); ?>" class="btn btn-primary mr-3">
+      Voltar
+    </a>
+    <?php echo Form::hidden('info', 'editar_programacao'); ?>
+
+    <?php echo Form::submit('Salvar', ['class'=>'btn btn-primary']); ?>
+
+  </div>
+  <?php echo Form::close(); ?>
+
+</div>
+<?php elseif($field == "folder"): ?>
+<div class="d-flex my-4">
+  <?php echo Form::open(array('route' => ['events.edit', $id],'method'=>'POST')); ?>
+
+  <?php echo Form::textarea('input', $old->folder, ['id' => 'editor']); ?>
+
+  <div class="mt-4">
+    <a href="<?php echo e(route('events.show', ['id' => $id])); ?>" class="btn btn-primary mr-3">
+      Voltar
+    </a>
+    <?php echo Form::hidden('info', 'editar_folder'); ?>
 
     <?php echo Form::submit('Salvar', ['class'=>'btn btn-primary']); ?>
 

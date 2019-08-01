@@ -39,7 +39,6 @@ Route::get('send/user/{id}/evento/{user_id}', 'SendEmailUserController@QR')->nam
 
 Route::get('qrcode/{id}/{user_id}','QRController@qrcode')->name('qr');
 
-
 Auth::routes();
 
 Auth::routes(['verify' => true]);

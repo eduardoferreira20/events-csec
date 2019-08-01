@@ -21,6 +21,8 @@ class CreateEventsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->text('apresentation')->nullable();
+            $table->text('programacao')->nullable();
+            $table->text('folder')->nullable();
             $table->string('title');
             $table->datetime('start_date');
             $table->datetime('end_date');

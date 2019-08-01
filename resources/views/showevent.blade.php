@@ -85,8 +85,22 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex mb-3 flex-column">
-                a
+                @if($data['programacao'] != null)
+                {!! $data['programacao'] !!}
+                @else
+                <div class="text-muted">
+                  Nada para informar.
+                </div>
+                @endif
               </div>
+              @auth('admin-web')
+              <div class="d-flex">
+                {!! Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')) !!}
+                {!! Form::hidden('info', 'programacao') !!}
+                {!! Form::submit('Editar campo', ['class'=>'btn btn-primary']) !!}
+                {!! Form::close() !!}
+              </div>
+              @endauth
             </div>
           </div>
         </div>
@@ -94,8 +108,22 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex mb-3 flex-column">
-                a2
+                @if($data['folder'] != null)
+                {!! $data['folder'] !!}
+                @else
+                <div class="text-muted">
+                  Nada para informar.
+                </div>
+                @endif
               </div>
+              @auth('admin-web')
+              <div class="d-flex">
+                {!! Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')) !!}
+                {!! Form::hidden('info', 'folder') !!}
+                {!! Form::submit('Editar campo', ['class'=>'btn btn-primary']) !!}
+                {!! Form::close() !!}
+              </div>
+              @endauth
             </div>
           </div>
         </div>

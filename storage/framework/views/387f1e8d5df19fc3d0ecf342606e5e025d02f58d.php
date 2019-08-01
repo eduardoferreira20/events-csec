@@ -97,8 +97,27 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex mb-3 flex-column">
-                a
+                <?php if($data['programacao'] != null): ?>
+                <?php echo $data['programacao']; ?>
+
+                <?php else: ?>
+                <div class="text-muted">
+                  Nada para informar.
+                </div>
+                <?php endif; ?>
               </div>
+              <?php if(auth()->guard('admin-web')->check()): ?>
+              <div class="d-flex">
+                <?php echo Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')); ?>
+
+                <?php echo Form::hidden('info', 'programacao'); ?>
+
+                <?php echo Form::submit('Editar campo', ['class'=>'btn btn-primary']); ?>
+
+                <?php echo Form::close(); ?>
+
+              </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -106,8 +125,27 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex mb-3 flex-column">
-                a2
+                <?php if($data['folder'] != null): ?>
+                <?php echo $data['folder']; ?>
+
+                <?php else: ?>
+                <div class="text-muted">
+                  Nada para informar.
+                </div>
+                <?php endif; ?>
               </div>
+              <?php if(auth()->guard('admin-web')->check()): ?>
+              <div class="d-flex">
+                <?php echo Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')); ?>
+
+                <?php echo Form::hidden('info', 'folder'); ?>
+
+                <?php echo Form::submit('Editar campo', ['class'=>'btn btn-primary']); ?>
+
+                <?php echo Form::close(); ?>
+
+              </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>
