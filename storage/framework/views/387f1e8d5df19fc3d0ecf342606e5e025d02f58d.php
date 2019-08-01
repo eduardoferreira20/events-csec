@@ -13,7 +13,7 @@
 <div class="d-flex mb-4">
   <div class="d-flex flex-column mr-auto">
     <h4>
-      Organizador:
+      Coordenador:
       <a class="btn btn-link" href="<?php echo e(route('user.index', ['id' => $info->id])); ?>">
         <?php echo e($info->name); ?>
 
@@ -114,7 +114,7 @@
       </div> 
     </div>
   </div>
-  <div class="d-flex flex-column">
+ <!--  <div class="d-flex flex-column">
     <div class="d-flex mr-auto mb-3">
       <h2>Palestrantes:</h2>
     </div>
@@ -148,42 +148,18 @@
           </div>
         </div>
         <div id="collapse<?php echo e($palestrante->id); ?>" class="collapse" aria-labelledby="heading<?php echo e($palestrante->id); ?>" data-parent="#accordion">
-          <div class="card-body">
-            <?php if($palestrante->apresentacao != null): ?>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-3 text-center">
-                  <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="<?php echo e($palestrante->nome); ?>"
-                  class="img-fluid z-depth-1-half rounded-circle"> -->
-                  <div style="height: 10px"></div>
-                  <p class="title mb-0"><?php echo e($palestrante->nome); ?></p>
-                  <p class="text-muted " style="font-size: 13px"><?php echo e($palestrante->cargo); ?></p>
+            <div class="card-body">
+              <?php if($palestrante->apresentacao != null): ?>
+                <?php echo $palestrante->apresentacao; ?>
+
+              <?php else: ?>
+                <div class="text-muted">
+                  Nada para informar.
                 </div>
-                <div class="col-9">
-                  <p><?php echo $palestrante->apresentacao; ?></p>
-                </div>
-              </div>
+              <?php endif; ?> 
             </div>
-            <?php else: ?>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-3 text-center">
-                  <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="IMG of Avatars"
-                  class="img-fluid z-depth-1-half rounded-circle"> -->
-                  <div style="height: 10px"></div>
-                  <p class="title mb-0"><?php echo e($palestrante->nome); ?></p>
-                  <p class="text-muted " style="font-size: 13px"><?php echo e($palestrante->cargo); ?></p>
-                </div>
-                <div class="col-9">
-                  <p></p>
-                </div>
-              </div>
-            </div>
-            <?php endif; ?> 
           </div>
-        </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <?php if(auth()->guard('admin-web')->check()): ?>
         <div class="card-header">
           <?php echo Form::open(array('route' => ['events.edit', $data['id']],'method'=>'POST')); ?>
 
@@ -194,10 +170,9 @@
           <?php echo Form::close(); ?>
 
         </div>
-        <?php endif; ?>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="d-flex flex-column" id="palestras">
     <div class="d-flex mr-auto mb-3">
       <h2>

@@ -13,8 +13,16 @@ Editar descrição
 Editar informações
 <?php elseif($field == "palestrantes"): ?>
 Editar informações de palestrante
+<?php elseif($field == "oficinas"): ?>
+Editar informações do Minicurso
 <?php elseif($field == "add_palestrante"): ?>
 Adicionar palestrante
+<?php elseif($field == "adicionar_palestras"): ?>
+Adicionar palestra
+<?php elseif($field == "palestras"): ?>
+Editar informações da palestra
+<?php elseif($field == "add_minicurso"): ?>
+Adicionar minicurso
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
 
@@ -47,6 +55,13 @@ Adicionar palestrante
     <?php echo Form::text('title', $old['title'], ['class' => 'form-control']); ?>
 
   </div>
+    <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('link','Link do evento:'); ?>
+
+    <?php echo Form::text('link', $old['link'], ['class' => 'form-control','placeholder' => 'Caso o evento tenha um site']); ?>
+
+  </div>
+
   <div class="d-flex flex-column mb-4">
     <?php echo Form::label('local','Local do evento:'); ?>
 
@@ -54,7 +69,13 @@ Adicionar palestrante
 
   </div>
   <div class="d-flex flex-column mb-4">
-    <?php echo Form::label('cidade','Cidade do evento:'); ?>
+    <?php echo Form::label('rua','Rua do evento:'); ?>
+
+    <?php echo Form::text('rua', $old['rua'], ['class' => 'form-control']); ?>
+
+  </div>
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('cidade','Bairro do evento:'); ?>
 
     <?php echo Form::text('cidade', $old['cidade'], ['class' => 'form-control']); ?>
 
@@ -63,6 +84,12 @@ Adicionar palestrante
     <?php echo Form::label('valor','Valor do evento:'); ?>
 
     <?php echo Form::text('valor', $old['valor'], ['class' => 'form-control']); ?>
+
+  </div>
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('hora_comple','Horas ofertadas:'); ?>
+
+    <?php echo Form::text('hora_comple', $old['hora_comple'], ['class' => 'form-control']); ?>
 
   </div>
   <div class="d-flex flex-fill mb-4">
@@ -114,7 +141,7 @@ Adicionar palestrante
 </div>
 <?php elseif($field == "palestrantes"): ?>
 <div class="d-flex my-4">
-  <?php echo Form::open(array('route' => ['events.edit', $id],'method'=>'POST')); ?>
+  <?php echo Form::open(array('route' => ['events.edit', $id],'method'=>'POST', 'files' => true)); ?>
 
   <?php echo Form::label('nome','Nome completo do palestrante:'); ?>
 
@@ -124,10 +151,15 @@ Adicionar palestrante
 
   <?php echo Form::text('instituicao', $old->instituicao, ['class' => 'form-control mb-4']); ?>
 
+  <?php echo Form::label('cargo','Profissão:'); ?>
+
+  <?php echo Form::text('cargo', $old->cargo, ['class' => 'form-control mb-4']); ?>
+
   <?php echo Form::label('url','Endereço web da Instituição:'); ?>
 
   <?php echo Form::text('url', $old->url, ['class' => 'form-control mb-4']); ?>
 
+ 
   <div class="d-flex flex-column">
     <?php echo Form::label('input','Descrição do palestrante:'); ?>
 
@@ -140,6 +172,87 @@ Adicionar palestrante
     <?php echo Form::hidden('id', $old->id); ?>
 
     <?php echo Form::hidden('info', 'editar_palestrante'); ?>
+
+    <?php echo Form::submit('Salvar', ['class'=>'btn btn-primary']); ?>
+
+  </div>
+  <?php echo Form::close(); ?>
+
+</div>
+<?php elseif($field == "oficinas"): ?>
+<div class="d-flex my-4">
+  <?php echo Form::open(array('route' => ['events.edit', $id],'method'=>'POST')); ?>
+
+  <?php echo Form::label('titulo','Título:'); ?>
+
+  <?php echo Form::text('titulo', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante1','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante1', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante2','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante2', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante3','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante3', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante4','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante4', null, ['class' => 'form-control mb-4']); ?>
+
+  <div class="d-flex flex-fill mb-4">
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('start_date','Data:'); ?>
+
+    <?php echo Form::date('start_date', null, ['class' => 'form-control']); ?>
+
+  </div>
+</div>
+  <div class="d-flex flex-fill mb-4">
+  <div class="d-flex flex-column mr-4 clockpicker">
+    <?php echo Form::label('start_time','Horário inicial:'); ?>
+
+    <?php echo Form::text('start_time', null, ['class' => 'form-control', 'placeholder' => '--:--']); ?>
+
+  </div>
+  <div class="d-flex flex-column mr-4 clockpicker">
+    <?php echo Form::label('end_time','Horário final:'); ?>
+
+    <?php echo Form::text('end_time', null, ['class' => 'form-control', 'placeholder' => '--:--']); ?>
+
+  </div>
+</div>
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('hora_comple','Horas ofertadas:'); ?>
+
+    <?php echo Form::text('hora_comple', null, ['class' => 'form-control']); ?>
+
+  </div>
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('local','Local do curso:'); ?>
+
+    <?php echo Form::text('local', $old->local, ['class' => 'form-control']); ?>
+
+    <?php echo Form::label('valor','Valor do curso:'); ?>
+
+    <?php echo Form::text('valor', $old->valor, ['class' => 'form-control']); ?>
+
+  </div>
+  <div class="d-flex flex-column">
+    <?php echo Form::label('input','Descrição do palestrante:'); ?>
+
+    <?php echo Form::textarea('input', $old->apresentation, ['id' => 'editor']); ?>   
+  </div>
+  <div class="mt-4">
+    <a href="<?php echo e(route('events.show', ['id' => $id])); ?>" class="btn btn-primary mr-3">
+      Voltar
+    </a>
+    <?php echo Form::hidden('id', $old->id); ?>
+
+    <?php echo Form::hidden('info', 'editar_oficinas'); ?>
 
     <?php echo Form::submit('Salvar', ['class'=>'btn btn-primary']); ?>
 
@@ -173,6 +286,85 @@ Adicionar palestrante
       Voltar
     </a>
     <?php echo Form::hidden('info', 'adicionar_palestrante'); ?>
+
+    <?php echo Form::submit('Salvar', ['class'=>'btn btn-primary']); ?>
+
+  </div>
+  <?php echo Form::close(); ?>
+
+</div>
+<?php elseif($field == "add_minicurso"): ?>
+<div class="d-flex my-4">
+  <?php echo Form::open(array('route' => ['events.edit', $id],'method'=>'POST')); ?>
+
+  <?php echo Form::label('titulo','Título:'); ?>
+
+  <?php echo Form::text('titulo', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante1','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante1', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante2','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante2', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante3','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante3', null, ['class' => 'form-control mb-4']); ?>
+
+  <?php echo Form::label('palestrante4','Palestrante:'); ?>
+
+  <?php echo Form::text('palestrante4', null, ['class' => 'form-control mb-4']); ?>
+
+  <div class="d-flex flex-fill mb-4">
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('start_date','Data:'); ?>
+
+    <?php echo Form::date('start_date', null, ['class' => 'form-control']); ?>
+
+  </div>
+</div>
+  <div class="d-flex flex-fill mb-4">
+  <div class="d-flex flex-column mr-4 clockpicker">
+    <?php echo Form::label('start_time','Horário inicial:'); ?>
+
+    <?php echo Form::text('start_time', null, ['class' => 'form-control', 'placeholder' => '--:--']); ?>
+
+  </div>
+  <div class="d-flex flex-column mr-4 clockpicker">
+    <?php echo Form::label('end_time','Horário final:'); ?>
+
+    <?php echo Form::text('end_time', null, ['class' => 'form-control', 'placeholder' => '--:--']); ?>
+
+  </div>
+</div>
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('hora_comple','Horas ofertadas:'); ?>
+
+    <?php echo Form::text('hora_comple', null, ['class' => 'form-control']); ?>
+
+  </div>
+  <div class="d-flex flex-column mb-4">
+    <?php echo Form::label('local','Local do curso:'); ?>
+
+    <?php echo Form::text('local', null, ['class' => 'form-control']); ?>
+
+    <?php echo Form::label('valor','Valor do curso:'); ?>
+
+    <?php echo Form::text('valor', null, ['class' => 'form-control']); ?>
+
+  </div>
+  <div class="d-flex flex-column">
+    <?php echo Form::label('input','Descrição do minicurso:'); ?>
+
+    <?php echo Form::textarea('input', null, ['id' => 'editor']); ?> 
+  </div> 
+  <div class="mt-4">
+    <a href="<?php echo e(route('events.show', ['id' => $id])); ?>" class="btn btn-primary mr-3">
+      Voltar
+    </a>
+    <?php echo Form::hidden('info', 'adicionar_minicurso'); ?>
 
     <?php echo Form::submit('Salvar', ['class'=>'btn btn-primary']); ?>
 

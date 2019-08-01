@@ -76,7 +76,7 @@
             @endif
           </div>
           <div class="table">
-            <p>Certificamos que <strong>{{$user->user->name}}</strong>, portador do documento <strong>{{$user->user->documento}}</strong>, participou com exito do evento <strong>{{$evento->title}}</strong>  realizado na <strong>{{$evento->local}}</strong> na cidade de <strong>{{$evento->cidade}}</strong>, contabilizando carga horária total de <strong>{{$evento->hora_comple}}</strong> horas.</p>
+            <p>Certificamos que <strong>{{$user->user->name}}</strong>, portador do documento <strong>{{$user->user->documento}}</strong>, participou com êxito do evento <strong>{{$evento->title}}</strong>  realizado na <strong>{{$evento->local}}</strong> na cidade de <strong>{{$evento->cidade}}</strong>, contabilizando carga horária total de <strong>{{$evento->hora_comple}}</strong> horas.</p>
           </div>
         </div>
       </div>

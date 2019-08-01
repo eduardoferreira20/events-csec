@@ -293,7 +293,7 @@ body {
 												@auth('admin-web')
 												<a class="btn btn-danger" href="javascript:(confirm('Deletar esse vento?') ? window.location.href='{{route('events.deletar', $titulo->id)}}' : false)">Deletar</a>
 												@endauth
-												<a class="btn btn-info" href="{{route('events.edit',$titulo->id)}}" style="">Visitar</a>
+												<a class="btn btn-info" href="{{route('events.edit',$titulo->id)}}" style="">Acesse</a>
 											</td>
 										</tr>
 									</tbody>

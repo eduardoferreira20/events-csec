@@ -14,7 +14,7 @@
 <div class="d-flex mb-4">
   <div class="d-flex flex-column mr-auto">
     <h4>
-      Organizador:
+      Coordenador:
       <a class="btn btn-link" href="{{ route('user.index', ['id' => $info->id]) }}">
         {{ $info->name }}
       </a>
@@ -102,7 +102,7 @@
       </div> 
     </div>
   </div>
-  <div class="d-flex flex-column">
+ <!--  <div class="d-flex flex-column">
     <div class="d-flex mr-auto mb-3">
       <h2>Palestrantes:</h2>
     </div>
@@ -148,7 +148,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="d-flex flex-column" id="palestras">
     <div class="d-flex mr-auto mb-3">
       <h2>

@@ -291,7 +291,7 @@ body {
 												<?php if(auth()->guard('admin-web')->check()): ?>
 												<a class="btn btn-danger" href="javascript:(confirm('Deletar esse vento?') ? window.location.href='<?php echo e(route('events.deletar', $titulo->id)); ?>' : false)">Deletar</a>
 												<?php endif; ?>
-												<a class="btn btn-info" href="<?php echo e(route('events.edit',$titulo->id)); ?>" style="">Visitar</a>
+												<a class="btn btn-info" href="<?php echo e(route('events.edit',$titulo->id)); ?>" style="">Acesse</a>
 											</td>
 										</tr>
 									</tbody>
