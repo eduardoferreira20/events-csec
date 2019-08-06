@@ -215,7 +215,7 @@
             {!! Form::hidden('info', 'mostrar_escolha') !!}
             {!! Form::submit('Inscrever-se', ['class'=>'btn btn-primary']) !!}
             {!! Form::close() !!} -->
-            <a class="btn btn-primary" href="{{ route('events.escolha', ['id' => $info->id]) }}">Inscreva-se<a/>
+            <a class="btn btn-primary" href="{{ route('events.escolha', ['id' => $data->id]) }}">Inscreva-se<a/>
             @endauth
             @endif
             @endif

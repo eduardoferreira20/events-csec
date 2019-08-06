@@ -547,9 +547,9 @@ class EventController extends Controller
 			->where('id', $id)
 			->first();
 
-			return view('escolha')
-			->with('evento', $evento)
-			->with('info', $request['info']);
+
+			return view('escolha',compact('id'))
+			->with('evento', $evento);
 	}
 
 	public function inscricoes($id, Request $request){
