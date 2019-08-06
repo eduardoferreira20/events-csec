@@ -548,8 +548,10 @@ class EventController extends Controller
 			->first();
 
 
-			return view('escolha',compact('id'))
-			->with('evento', $evento);
+			return view('escolha')
+			->with('evento', $evento)
+			->with('info', $request['info'])
+			->with('data',$request['data']);
 	}
 
 	public function inscricoes($id, Request $request){
