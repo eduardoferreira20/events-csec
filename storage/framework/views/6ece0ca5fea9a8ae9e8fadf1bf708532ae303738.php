@@ -25,6 +25,15 @@
 </div>
 <?php echo Form::close(); ?>
 
+<?php elseif($info == 'mostrar_escolha'): ?>
+<?php echo Form::open(array('route' => ['events.inscricoes', $data['id']],'method'=>'POST')); ?>
+
+<?php echo Form::hidden('info', 'mostrar_inscricao'); ?>
+
+<?php echo Form::submit('Tranferência', ['class'=>'btn btn-primary']); ?>
+
+<?php echo Form::close(); ?>
+
 <?php elseif($info == 'mostrar_inscricao'): ?>
 <p>Ol&aacute;!</p>
 <p>Ficamos feliz por voc&ecirc; ter se interessado pelo nosso evento.</p>

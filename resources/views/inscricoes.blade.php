@@ -19,6 +19,7 @@
     </div>
 </div>
 {!! Form::close() !!}
+
 @elseif($info == 'mostrar_inscricao')
 <p>Ol&aacute;!</p>
 <p>Ficamos feliz por voc&ecirc; ter se interessado pelo nosso evento.</p>

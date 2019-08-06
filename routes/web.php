@@ -27,6 +27,7 @@ Route::get('pagamento/{id}','InscricaoController@lista')->name('lista.pay');
 
 Route::get('boleto/','BoletoController@boleto')->name('boleto');
 
+Route::get('eventos/{id}/escolha','EventController@inscricoes')->name('events.escolha');
 Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('events.inscricoes');
 
 Route::get('users/{id}', 'UserController@index')->name('user.index');

@@ -542,8 +542,19 @@ class EventController extends Controller
 
 		return redirect()->route('index');
 	}
+	public function escolha($id,Request $request){
+		$evento = DB::table('events')
+			->where('id', $id)
+			->first();
+
+			return view('escolha')
+			->with('evento', $evento)
+			->with('info', $request['info']);
+	}
 
 	public function inscricoes($id, Request $request){
+
+
 		if($request['info'] == 'mostrar_edicao' || $request['info'] == 'mostrar_inscricao'){
 			$evento = DB::table('events')
 			->where('id', $id)
@@ -562,9 +573,6 @@ class EventController extends Controller
 			->update(['fim_inscricoes' => $request['fim_inscricoes']]);
 			
 			return Redirect::to(route('events.show', ['id' => $id]));
-		}elseif($request['info'] == 'inscrever'){
-
-			
 		}
 	}
 
