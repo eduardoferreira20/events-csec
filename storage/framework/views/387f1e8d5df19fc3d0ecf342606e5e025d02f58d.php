@@ -253,14 +253,12 @@
             </div>
             <?php else: ?>
             <?php if(auth()->guard('user-web')->check()): ?>
-            <!-- <?php echo Form::open(array('route' => ['events.escolha', $data['id']],'method'=>'POST')); ?>
-
-            <?php echo Form::hidden('info', 'mostrar_escolha'); ?>
+            <?php echo Form::open(array('route' => ['events.escolha', $data['id']],'method'=>'POST')); ?>
 
             <?php echo Form::submit('Inscrever-se', ['class'=>'btn btn-primary']); ?>
 
-            <?php echo Form::close(); ?> -->
-            <a class="btn btn-primary" href="<?php echo e(route('events.escolha', ['id' => $info->id])); ?>">Inscreva-se<a/>
+            <?php echo Form::close(); ?>
+
             <?php endif; ?>
             <?php endif; ?>
             <?php endif; ?>

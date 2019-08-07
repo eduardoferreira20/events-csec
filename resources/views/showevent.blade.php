@@ -211,11 +211,9 @@
             </div>
             @else
             @auth('user-web')
-            <!-- {!! Form::open(array('route' => ['events.escolha', $data['id']],'method'=>'POST')) !!}
-            {!! Form::hidden('info', 'mostrar_escolha') !!}
+            {!! Form::open(array('route' => ['events.escolha', $data['id']],'method'=>'POST')) !!}
             {!! Form::submit('Inscrever-se', ['class'=>'btn btn-primary']) !!}
-            {!! Form::close() !!} -->
-            <a class="btn btn-primary" href="{{ route('events.escolha', ['id' => $data->id]) }}">Inscreva-se<a/>
+            {!! Form::close() !!}
             @endauth
             @endif
             @endif
