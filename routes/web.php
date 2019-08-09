@@ -24,10 +24,11 @@ Route::get('eventos/deletar/{id}', 'EventController@deletar')->name('events.dele
 
 Route::get('pagamento','InscricaoController@pagamento')->name('pay');
 Route::get('pagamento/{id}','InscricaoController@lista')->name('lista.pay');
+Route::get('pag/{id}','InscricaoController@download')->name('pay.download');
 
 Route::get('boleto/','BoletoController@boleto')->name('boleto');
 
-Route::post('eventos/{id}/escolha','EventController@escolha')->name('events.escolha');
+Route::get('eventos/{id}/escolha','EventController@escolha')->name('events.escolha');
 Route::post('eventos/{id}/inscricoes', 'InscricaoController@inscricoes')->name('events.inscricoes');
 
 Route::get('users/{id}', 'UserController@index')->name('user.index');

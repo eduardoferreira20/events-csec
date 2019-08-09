@@ -22,10 +22,11 @@
       <td>{{$boleto->event_id}}</td>
       <td>{{$boleto->created_at}}</td>
       <td>
-      	<a href="storage/app/public/comprovantes/{{$boleto->comprovante_path}}" download="storage/app/public/comprovantes/{{$boleto->comprovante_path}}">
-      		<button type="download" class="btn btn-primary">
+      	<a href="{{route('pay.download',$boleto->id)}}">
+          Download
+      		<!-- button type="download" class="btn btn-primary">
       			<i class="glyphicon glyphicon-download">Boletos</i>
-      		</button>
+      		</button> -->
       	</a>
       </td>
     </tr>

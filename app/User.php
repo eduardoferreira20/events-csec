@@ -38,4 +38,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Inscricao','user_id','event_id');
     }
 
+    public function inscricao(){
+        
+        return $this->belongsTo('App\Inscricao');
+    }
+
 }
