@@ -24,7 +24,7 @@ Route::get('eventos/deletar/{id}', 'EventController@deletar')->name('events.dele
 
 Route::get('pagamento','InscricaoController@pagamento')->name('pay');
 Route::get('pagamento/{id}','InscricaoController@lista')->name('lista.pay');
-Route::get('pag/{id}','InscricaoController@download')->name('pay.download');
+Route::get('pagamento/{id}/download','InscricaoController@download')->name('pay.download');
 
 Route::get('boleto/','BoletoController@boleto')->name('boleto');
 

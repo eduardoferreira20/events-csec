@@ -20,13 +20,10 @@
   	@foreach($boletos as $boleto)
     <tr>
       <td>{{$boleto->event_id}}</td>
-      <td>{{$boleto->created_at}}</td>
+      <td>{{date('d-m-Y/H:m',strtotime($boleto->created_at))}}</td>
       <td>
-      	<a href="{{route('pay.download',$boleto->id)}}">
-          Download
-      		<!-- button type="download" class="btn btn-primary">
-      			<i class="glyphicon glyphicon-download">Boletos</i>
-      		</button> -->
+      	<a href="{{route('pay.download',$boleto->id)}}" target="_blank">
+          {{$boleto->comprovante_path}}
       	</a>
       </td>
     </tr>

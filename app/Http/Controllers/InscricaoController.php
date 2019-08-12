@@ -102,21 +102,22 @@ class InscricaoController extends Controller
 	}
 
 	public function lista($id){
-	
+
 		$boletos = DB::table('inscricaos')->where('event_id',$id)->get();
 		return view('lista',compact('boletos'));
 	}
 	public function download($id){
 
-	$boleto =DB::table('inscricaos')->where('event_id',$id)->get();
+		$boleto =DB::table('inscricaos')->where('event_id',$id)->get();
 
-	foreach ($boleto as $b){
+		foreach($boleto as $b){
 
-		$b=var_dump($boleto->comprovante_path);
-
+		// $nome = var_dump($b->comprovante_path);
+		$a = storage_path('app/public/comporvantes/'.$b->comprovante_path);
 		// echo $boleto['comprovante_path'];
-	return response()->download(storage_path('app/public/comporvantes/'.$b));
-}
+		return response()->download($a);
+	}
+
 	}
 
 	public function deletar(){
