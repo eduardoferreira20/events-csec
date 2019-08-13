@@ -12,6 +12,7 @@
   <thead>
     <tr>
       <th scope="col">Evento</th>
+      <th scope="col">Usuário</th>
       <th scope="col">Hora de envio</th>
       <th scope="col">Ações</th>
     </tr>
@@ -20,10 +21,11 @@
   	@foreach($boletos as $boleto)
     <tr>
       <td>{{$boleto->event_id}}</td>
+      <td>{{$boleto->user_id}}</td>
       <td>{{date('d-m-Y/H:m',strtotime($boleto->created_at))}}</td>
       <td>
-      	<a href="{{route('pay.download',$boleto->id)}}" target="_blank">
-          {{$boleto->comprovante_path}}
+      	<a href="{{route('pay.download',$boleto->id)}}" target="_blank" download="{{$boleto->comprovante_path}}">
+          Download
       	</a>
       </td>
     </tr>

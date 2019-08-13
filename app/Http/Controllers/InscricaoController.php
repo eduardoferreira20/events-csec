@@ -111,13 +111,15 @@ class InscricaoController extends Controller
 		$boleto =DB::table('inscricaos')->where('event_id',$id)->get();
 
 		foreach($boleto as $b){
+			// $q = serialize($b->comprovante_path);
+			$q = basename($pathFile);
+			$pathFile = storage_path('app/public/comporvantes/'.$b->comprovante_path);
 
-		// $nome = var_dump($b->comprovante_path);
-		$a = storage_path('app/public/comporvantes/'.$b->comprovante_path);
-		// echo $boleto['comprovante_path'];
-		return response()->download($a);
-	}
-
+			return response()->download($pathFile,$q);
+			// return Storage::disk('public')->download($b->comprovante_path);
+		}
+		// $pathFile = storage_path('app/public/comporvantes/'."1.pdf");
+		// return response()->download($pathFile);
 	}
 
 	public function deletar(){
