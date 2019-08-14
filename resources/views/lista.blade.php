@@ -3,7 +3,7 @@
 @section('titulo-principal')
 <div class="d-flex">
   <div class="d-flex flex-fill">
-    Lista de Boletos
+    Lista de Comprovantes
   </div>
 </div>
 @endsection

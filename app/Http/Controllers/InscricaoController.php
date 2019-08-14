@@ -49,7 +49,7 @@ class InscricaoController extends Controller
     		// Verifica se informou o arquivo e se é válido
 			if ($request->hasFile('comprovante') && $request->file('comprovante')->isValid()) {
 
-        		// Define um aleatório para o arquivo baseado no timestamps atual
+        		// Define o nome do arquivo como o id do usuario que envio o comprovante
 				$name =  Auth::user()->id;;
 
         		// Recupera a extensão do arquivo
@@ -68,20 +68,10 @@ class InscricaoController extends Controller
 				->back()
 				->with('error', 'Falha ao fazer upload')
 				->withInput();
-
 			}
-			// $comprovante = $request->file('comprovante');
-			// $extensao = $request->comprovante->getClientOriginalExtension();
-			// $name = time(). ".".$extensao;
-			// $path = url('storage/'.$comprovante->storeAs('comprovantes', $request['user_id'].'.'.$extensao));
-
-
-			// if (empty($comprovante)) {
-			// 	abort(400, 'Nenhum arquivo foi enviado.');
-			// }
-
 			//pega o id do ususario logado
 			$user = Auth::user()->id;
+
 			//insero os dados no banco
 			Inscricao::create([
 				'user_id' => $user,
@@ -106,19 +96,20 @@ class InscricaoController extends Controller
 		$boletos = DB::table('inscricaos')->where('event_id',$id)->get();
 		return view('lista',compact('boletos'));
 	}
+	
 	public function download($id){
 
 		$boleto =DB::table('inscricaos')->where('event_id',$id)->get();
 
 		foreach($boleto as $b){
-			// $q = serialize($b->comprovante_path);
-			$q = basename($pathFile);
+		// 	// $q = serialize($b->comprovante_path);
+		// 	$q = basename($pathFile);
 			$pathFile = storage_path('app/public/comporvantes/'.$b->comprovante_path);
 
 			return response()->download($pathFile,$q);
-			// return Storage::disk('public')->download($b->comprovante_path);
+		// 	// return Storage::disk('public')->download($b->comprovante_path);
 		}
-		// $pathFile = storage_path('app/public/comporvantes/'."1.pdf");
+		// $pathFile = storage_path('app/public/comporvantes/'."1.doc");
 		// return response()->download($pathFile);
 	}
 

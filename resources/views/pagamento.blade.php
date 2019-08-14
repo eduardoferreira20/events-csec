@@ -21,9 +21,7 @@
       <td>{{$evento->title}}</td>
       <td>
       	<a href="{{route('lista.pay',$evento->id)}}" class="btn btn-primary mr-3">
-      		<button type="download" class="btn btn-primary">
-      			<i class="glyphicon glyphicon-download">Download</i>
-      		</button>
+      			Acessar
       	</a>
       </td>
     </tr>

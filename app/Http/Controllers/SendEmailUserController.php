@@ -50,7 +50,10 @@ class SendEmailUserController extends Controller
 	}
 
 	public function QR($id,$user_id){
+		$users = [];
+
 		$user=Inscricao::where('user_id',$user_id)->first();
+		$users = Inscricao::where('users_id',$user_id)->get();
 		$evento=Event::where('id',$id)->first();
 
 		$to_name = $user->user->name;
