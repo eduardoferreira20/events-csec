@@ -169,6 +169,7 @@ return [
         /*
          * Package Service Providers...
          */
+         Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -180,8 +181,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
-        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
         /**
          * 
          */

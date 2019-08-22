@@ -6,15 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'UpdateHelper\\' => array($vendorDir . '/kylekatarnls/update-helper/src'),
-    'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src'),
-    'SimpleSoftwareIO\\QrCode\\' => array($vendorDir . '/simplesoftwareio/simple-qrcode/src'),
-    'Sabberworm\\CSS' => array($vendorDir . '/sabberworm/php-css-parser/lib'),
-    'Parsedown' => array($vendorDir . '/erusev/parsedown'),
-    'OpenCloud' => array($vendorDir . '/rackspace/php-opencloud/lib'),
-    'Mockery' => array($vendorDir . '/mockery/mockery/library'),
-    'MaddHatter\\LaravelFullcalendar' => array($vendorDir . '/maddhatter/laravel-fullcalendar/src'),
-    'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
-    'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
-    'BaconQrCode' => array($vendorDir . '/bacon/bacon-qr-code/src'),
 );
