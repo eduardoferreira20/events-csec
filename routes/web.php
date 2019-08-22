@@ -23,8 +23,8 @@ Route::get('eventos/deletarinscricao/{id}', 'EventController@deletarInscricao')-
 Route::get('eventos/deletar/{id}', 'EventController@deletar')->name('events.deletar');
 
 Route::get('pagamento','InscricaoController@pagamento')->name('pay');
-Route::get('pagamento/{id}','InscricaoController@lista')->name('lista.pay');
-Route::get('pagamento/{id}/download','InscricaoController@download')->name('pay.download');
+Route::get('pagamento/{id}/listar','InscricaoController@lista')->name('lista.pay');
+Route::get('pagamento/download/{namefile}','InscricaoController@baixando')->name('pay.comprovante');
 
 Route::get('boleto/','BoletoController@boleto')->name('boleto');
 

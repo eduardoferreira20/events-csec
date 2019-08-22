@@ -3,7 +3,7 @@
 @section('titulo-principal')
 <div class="d-flex">
   <div class="d-flex flex-fill">
-  Comprovantes
+    Lista de Comprovantes
   </div>
 </div>
 @endsection
@@ -18,13 +18,13 @@
     </tr>
   </thead>
   <tbody>
-  	@foreach($boletos as $boleto)
+  	@foreach($boleto as $boleto)
     <tr>
       <td>{{$boleto->event_id}}</td>
       <td>{{$boleto->user_id}}</td>
-      <td>{{date('d-m-Y à H:m',strtotime($boleto->created_at))}}</td>
+      <td>{{date('d-m-Y/H:m',strtotime($boleto->created_at))}}</td>
       <td>
-      	<a href="{{route('pay.comprovante', $boleto->comprovante_path)}}"  class="btn btn-primary">
+      	<a href="{{route('pay.download',$boleto->id,$boleto->comprovante_path)}}" download="{{$boleto->comprovante_path}}" target="_blank" class="btn btn-primary">
           Download
       	</a>
       </td>

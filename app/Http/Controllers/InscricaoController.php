@@ -50,7 +50,7 @@ class InscricaoController extends Controller
 			if ($request->hasFile('comprovante') && $request->file('comprovante')->isValid()) {
 
         		// Define o nome do arquivo como o id do usuario que envio o comprovante
-				$name =  Auth::user()->id;;
+				$name =  Auth::user()->id;
 
         		// Recupera a extensão do arquivo
 				$extension = $request->comprovante->extension();
@@ -94,25 +94,16 @@ class InscricaoController extends Controller
 	public function lista($id){
 
 		$boletos = DB::table('inscricaos')->where('event_id',$id)->get();
-		return view('lista',compact('boletos'));
+		return view('lista')->with('boletos',$boletos);
+	}
+
+	public function baixando($namefile){
+
+		$pathFile = storage_path('app/public/comporvantes/'.$namefile);
+
+		return response()->download($pathFile);		
 	}
 	
-	public function download($id){
-
-		$boleto =DB::table('inscricaos')->where('event_id',$id)->get();
-
-		foreach($boleto as $b){
-		// 	// $q = serialize($b->comprovante_path);
-		// 	$q = basename($pathFile);
-			$pathFile = storage_path('app/public/comporvantes/'.$b->comprovante_path);
-
-			return response()->download($pathFile,$q);
-		// 	// return Storage::disk('public')->download($b->comprovante_path);
-		}
-		// $pathFile = storage_path('app/public/comporvantes/'."1.doc");
-		// return response()->download($pathFile);
-	}
-
 	public function deletar(){
 		foreach ($this->id as $inscri){
 			$inscri->delete();
